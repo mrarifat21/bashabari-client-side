@@ -29,10 +29,11 @@ const Register = () => {
           name,
           email,
           role: "user",
+          image: profilePic,
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
-        const userRes= await axiosInstance.post("/users", userInfo);
+        const userRes = await axiosInstance.post("/users", userInfo);
         console.log(userRes.data);
 
         //  update user profile in firebase
@@ -42,12 +43,12 @@ const Register = () => {
         };
 
         updateUserProfile(userProfile)
-        .then(()=>{
-          console.log('profile image update');
-        })
-        .catch(error=>{
-          console.log('can not update profile image', error);
-        })
+          .then(() => {
+            console.log("profile image update");
+          })
+          .catch((error) => {
+            console.log("can not update profile image", error);
+          });
 
         Swal.fire({
           icon: "success",

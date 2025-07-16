@@ -1,27 +1,37 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
-// import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxios from "../../../../hooks/useAxios";
 
 const AddProperty = () => {
   const { user } = useAuth();
-  // const axiosSecure = useAxiosSecure();
   const axiosSecure = useAxios();
-  
+
   const [uploading, setUploading] = useState(false);
   const [imageURL, setImageURL] = useState("");
 
   const {
     register,
     handleSubmit,
+    watch,
     reset,
     formState: { errors },
   } = useForm();
 
+  const priceMin = watch("priceMin");
+  const priceMax = watch("priceMax");
+
   const onSubmit = async (data) => {
+    if (parseFloat(data.priceMin) > parseFloat(data.priceMax)) {
+      return Swal.fire(
+        "Validation Error",
+        "Minimum price cannot be greater than Maximum price",
+        "error"
+      );
+    }
+
     if (!imageURL) {
       return Swal.fire("Upload Failed", "Image not uploaded", "error");
     }
@@ -34,16 +44,19 @@ const AddProperty = () => {
       priceMax: parseFloat(data.priceMax),
       agentName: user?.displayName,
       agentEmail: user?.email,
+      agentImage: user?.photoURL, // ✅ Store profile image
       status: "pending",
       createdAt: new Date().toISOString(),
     };
 
     try {
       const res = await axiosSecure.post("/properties", property);
-      if (res.data.insertedId) {
+      if (res.data.insertedId || res.data.acknowledged) {
         Swal.fire("Success!", "Property added successfully", "success");
         reset();
         setImageURL("");
+      } else {
+        Swal.fire("Error!", "Could not add property", "error");
       }
     } catch (err) {
       console.error(err);
@@ -74,8 +87,8 @@ const AddProperty = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-base-200 p-6 rounded-lg shadow">
-      <h2 className="text-3xl font-bold mb-4">Add New Property</h2>
+    <div className="max-w-3xl mx-auto bg-base-200 p-6 rounded-lg shadow my-10">
+      <h2 className="text-3xl font-bold mb-4 text-center">Add New Property</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}
         <div>
@@ -108,6 +121,7 @@ const AddProperty = () => {
           <label className="label">Upload Property Image</label>
           <input
             type="file"
+            accept="image/*"
             onChange={handleImageUpload}
             className="file-input file-input-bordered w-full"
           />
@@ -116,7 +130,7 @@ const AddProperty = () => {
             <img
               src={imageURL}
               alt="preview"
-              className="w-40 mt-2 rounded-lg"
+              className="w-40 mt-2 rounded-lg border"
             />
           )}
         </div>
@@ -145,14 +159,14 @@ const AddProperty = () => {
           </div>
         </div>
 
-        {/* Agent Info (Read-only) */}
+        {/* Agent Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="label">Agent Name</label>
             <input
               type="text"
-              defaultValue={user?.displayName}
-              className="input input-bordered w-full "
+              value={user?.displayName || ""}
+              className="input input-bordered w-full"
               readOnly
             />
           </div>
@@ -160,15 +174,14 @@ const AddProperty = () => {
             <label className="label">Agent Email</label>
             <input
               type="text"
-              defaultValue={user?.email}
+              value={user?.email || ""}
               className="input input-bordered w-full"
               readOnly
             />
           </div>
         </div>
 
-        {/* Submit */}
-        <button className="btn btn-primary w-full" disabled={uploading}>
+        <button className="btn btn-primary w-full mt-4" disabled={uploading}>
           Submit Property
         </button>
       </form>
