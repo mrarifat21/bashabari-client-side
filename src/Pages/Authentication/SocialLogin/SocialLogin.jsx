@@ -15,7 +15,9 @@ const SocialLogin = () => {
       .then(async (result) => {
         const user = result.user
         console.log(result.user);
+        console.log("name",user.displayName)
         const userInfo = {
+          name: user.displayName,
           email: user.email,
           role: "user", // default role
           created_at: new Date().toISOString(),

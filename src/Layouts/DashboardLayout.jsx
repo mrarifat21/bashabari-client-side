@@ -1,5 +1,19 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
+import {
+  FaHome,
+  FaUser,
+  FaBuilding,
+  FaUsers,
+  FaComments,
+  FaPlus,
+  FaFolderOpen,
+  FaDollarSign,
+  FaClock,
+  FaHeart,
+  FaShoppingCart,
+  FaCommentDots,
+} from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -8,7 +22,7 @@ const DashboardLayout = () => {
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar bg-base-300 w-full lg:hidden">
-          <div className="flex-none ">
+          <div className="flex-none">
             <label
               htmlFor="my-drawer-2"
               aria-label="open sidebar"
@@ -31,35 +45,85 @@ const DashboardLayout = () => {
           </div>
           <div className="mx-2 flex-1 px-2 lg:hidden">Dashboard</div>
         </div>
-        {/* Page content here */}
-        <Outlet></Outlet>
-        {/* Page content here */}
+
+        {/* Page content */}
+        <Outlet />
       </div>
+
       <div className="drawer-side">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          {/* Sidebar content here */}
-          <p className="text-2xl">BashaBari</p>
+        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
+          {/* Sidebar content */}
+          <Link to="/" className="text-2xl text-primary font-extrabold mb-4">
+            BashaBari
+          </Link>
+
+          {/* Common */}
           <li>
-            <NavLink to="/dashboard">Home</NavLink>
+            <NavLink to="/dashboard">
+              <FaHome /> Home
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/myParcels">My Parcels</NavLink>
+            <NavLink to="/dashboard/myProfile">
+              <FaUser /> My Profile
+            </NavLink>
+          </li>
+          {/* User */}
+          <li>
+            <NavLink to="/dashboard/wishlist">
+              <FaHeart /> Wishlist
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
+            <NavLink to="/dashboard/propertyBougth">
+              <FaShoppingCart /> Property Bought
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/track">Track a Package</NavLink>
+            <NavLink to="/dashboard/myReviews">
+              <FaCommentDots /> My Reviews
+            </NavLink>
+          </li>
+          {/* Agent */}
+          <li>
+            <NavLink to="/dashboard/addProperty">
+              <FaPlus /> Add Property
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/profile">
-              
-              Update Profile
+            <NavLink to="/dashboard/myAddedProperties">
+              <FaFolderOpen /> My Added Properties
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/mySoldProperties">
+              <FaDollarSign /> My Sold Properties
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/requestedProperties">
+              <FaClock /> Requested Properties
+            </NavLink>
+          </li>
+          {/* Admin */}
+          <li>
+            <NavLink to="/dashboard/manageProperties">
+              <FaBuilding /> Manage Properties
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageUsers">
+              <FaUsers /> Manage Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageReviews">
+              <FaComments /> Manage Reviews
             </NavLink>
           </li>
         </ul>

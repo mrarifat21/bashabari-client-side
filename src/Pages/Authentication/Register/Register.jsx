@@ -26,6 +26,7 @@ const Register = () => {
       .then(async (result) => {
         console.log(result.user);
         const userInfo = {
+          name,
           email,
           role: "user",
           created_at: new Date().toISOString(),
