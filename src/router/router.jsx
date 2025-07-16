@@ -8,6 +8,8 @@ import Register from "../Pages/Authentication/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import AddProperty from "../Pages/Shared/Dashboard/AgentDashboard/AddProperty";
 import Forbidden from "../Pages/Forbidden/Forbidden";
+import MyAddedProperties from "../Pages/Shared/Dashboard/AgentDashboard/MyAddedProperties";
+import PrivateRoutes from "../routes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -34,14 +36,18 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
     children:[
 
       // agent dashbord
       {
         path: 'addProperty',
         element: <AddProperty></AddProperty>
-      }
+      },
+      {
+        path: 'myAddedProperties',
+        element: <MyAddedProperties></MyAddedProperties>
+      },
     ]
   },
 
