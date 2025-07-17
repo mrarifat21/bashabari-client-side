@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import profilePlaceholder from './../../assets/profilePlaceholder.jpg';
+import AddToWishlistButton from "./AddtoWishlistButton";
+
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -49,6 +51,8 @@ const PropertyDetails = () => {
           <span>{property.agentName}</span>
         </div>
       </div>
+
+      <AddToWishlistButton property={property}></AddToWishlistButton>
     </div>
   );
 };
