@@ -12,6 +12,7 @@ import AddProperty from "../Pages/Dashboard/AgentDashboard/AddProperty";
 import MyAddedProperties from "../Pages/Dashboard/AgentDashboard/MyAddedProperties";
 import UpdateProperty from "../Pages/Dashboard/AgentDashboard/UpdateProperty";
 import ManageProperties from "../Pages/Dashboard/AdminDashboard/ManageProperties";
+import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 
 
 export const router = createBrowserRouter([
@@ -69,7 +70,11 @@ export const router = createBrowserRouter([
       {
         path: 'manageProperties',
         element: <ManageProperties></ManageProperties>
-      }
+      },
+      {
+        path: 'manageUsers',
+        element: <ManageUsers></ManageUsers>
+      },
     ],
   },
 ]);
