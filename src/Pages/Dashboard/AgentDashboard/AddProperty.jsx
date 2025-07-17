@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-;
 import Swal from "sweetalert2";
 import axios from "axios";
-import useAuth from "../../../hooks/useAuth";
 import useAxios from "../../../hooks/useAxios";
+import useAuth from "../../../hooks/useAuth";
 
 
 const AddProperty = () => {

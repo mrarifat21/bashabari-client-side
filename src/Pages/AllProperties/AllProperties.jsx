@@ -1,19 +1,16 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import profilePlaceholder from "./../../assets/profilePlaceholder.jpg";
 import { Link } from "react-router"; 
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxios from "../../hooks/useAxios";
 
-
 const AllProperties = () => {
-//   const axiosSecure = useAxiosSecure();
   const axiosSecure = useAxios();
 
-  // Fetch all verified properties
   const { data: properties = [], isLoading } = useQuery({
-    queryKey: ["allVerifiedProperties"],
+    queryKey: ["verifiedPropertiesByAgent"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/properties?status=verified");
+      const res = await axiosSecure.get("/verified-properties-by-agents");
       return res.data;
     },
   });
@@ -52,33 +49,26 @@ const AllProperties = () => {
                   <strong>Location:</strong> {property.location}
                 </p>
 
-                {/* Agent Info */}
                 <div className="flex items-center gap-2 mt-2">
                   <strong className="text-sm">Agent:</strong>
                   <img
-                    src={
-                      property.agentImage ||
-                      "https://i.ibb.co/yWZyB89/default-avatar.png"
-                    }
+                    src={property.agentImage || profilePlaceholder}
                     alt="Agent"
                     className="w-8 h-8 rounded-full object-cover border"
                   />
                   <span className="text-sm">{property.agentName}</span>
                 </div>
 
-                {/* Status */}
                 <p className="text-sm mt-2">
                   <strong>Status:</strong>{" "}
                   <span className="badge badge-success ml-1">Verified</span>
                 </p>
 
-                {/* Price */}
                 <p className="text-sm mt-1">
                   <strong>Price Range:</strong> ${property.priceMin} - ${property.priceMax}
                 </p>
 
-                {/* Details button */}
-                <Link to={`/property/${property._id}`} className="mt-4">
+                <Link to={`/property/${property._id}`} className="mt-4 block">
                   <button className="btn btn-sm btn-outline btn-primary w-full">
                     View Details
                   </button>

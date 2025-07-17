@@ -24,11 +24,12 @@ const Register = () => {
 
     createUserWithEmail(email, password)
       .then(async (result) => {
-        console.log(result.user);
+        // console.log(result.user);
         const userInfo = {
           name,
           email,
           role: "user",
+          firebaseUid: result.user.uid,
           image: profilePic,
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),

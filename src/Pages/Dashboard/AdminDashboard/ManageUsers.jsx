@@ -1,9 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxios from "../../../hooks/useAxios";
 
 const ManageUsers = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxios();
+//   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
   // Fetch all users

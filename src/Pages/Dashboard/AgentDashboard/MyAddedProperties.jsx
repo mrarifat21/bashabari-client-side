@@ -1,5 +1,5 @@
 import React from "react";
-
+import profilePlaceholder from './../../../assets/profilePlaceholder.jpg';
 import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router";
@@ -95,7 +95,7 @@ const MyAddedProperties = () => {
             <div className="flex items-center gap-2 mt-1">
               <strong>Agent:</strong>
               <img
-                src={property.agentImage || "https://i.ibb.co/yWZyB89/default-avatar.png"}
+                src={property.agentImage || profilePlaceholder}
                 alt="Agent"
                 className="w-8 h-8 rounded-full object-cover border border-gray-300"
               />
