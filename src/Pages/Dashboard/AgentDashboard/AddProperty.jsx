@@ -43,7 +43,11 @@ const AddProperty = () => {
 
   const onSubmit = async (data) => {
     if (isFraud) {
-      return Swal.fire("Access Denied", "Fraud agents cannot add properties.", "error");
+      return Swal.fire(
+        "Access Denied",
+        "Fraud agents cannot add properties.",
+        "error"
+      );
     }
 
     if (parseFloat(data.priceMin) > parseFloat(data.priceMax)) {
@@ -62,6 +66,7 @@ const AddProperty = () => {
       title: data.title,
       location: data.location,
       image: imageURL,
+      description: data.description,
       priceMin: parseFloat(data.priceMin),
       priceMax: parseFloat(data.priceMax),
       agentName: user?.displayName,
@@ -114,7 +119,8 @@ const AddProperty = () => {
       <div className="max-w-2xl mx-auto p-10 text-center bg-red-100 border border-red-400 mt-10 rounded-lg">
         <h2 className="text-2xl font-bold text-red-600">Access Denied</h2>
         <p className="mt-2 text-red-500">
-          Your account has been marked as <strong>fraud</strong> by the admin. You are not allowed to add new properties.
+          Your account has been marked as <strong>fraud</strong> by the admin.
+          You are not allowed to add new properties.
         </p>
       </div>
     );
@@ -192,6 +198,20 @@ const AddProperty = () => {
             />
             {errors.priceMax && <p className="text-red-500">Required</p>}
           </div>
+        </div>
+        {/* description */}
+        <div>
+          <label className="label">Property Description</label>
+          <textarea
+            cols={3}
+            type="text"
+            placeholder="Description"
+            {...register("description", { required: true })}
+            className="input input-bordered w-full"
+          />
+          {errors.description && (
+            <p className="text-red-500">Description is required</p>
+          )}
         </div>
 
         {/* Agent Info */}
