@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
-import useAxios from "../../../hooks/useAxios";
 import useAuth from "../../../hooks/useAuth";
-
+import useAxios from "../../../hooks/useAxios";
 
 const AddProperty = () => {
   const { user } = useAuth();
@@ -12,6 +11,7 @@ const AddProperty = () => {
 
   const [uploading, setUploading] = useState(false);
   const [imageURL, setImageURL] = useState("");
+  const [isFraud, setIsFraud] = useState(false); // NEW: fraud status
 
   const {
     register,
@@ -24,7 +24,28 @@ const AddProperty = () => {
   const priceMin = watch("priceMin");
   const priceMax = watch("priceMax");
 
+  // 🔎 Check if user is fraud
+  useEffect(() => {
+    const checkFraudStatus = async () => {
+      if (user?.email) {
+        try {
+          const res = await axiosSecure.get(`/users/${user.email}`);
+          if (res.data?.status === "fraud") {
+            setIsFraud(true);
+          }
+        } catch (err) {
+          console.error("Failed to fetch user info", err);
+        }
+      }
+    };
+    checkFraudStatus();
+  }, [user?.email, axiosSecure]);
+
   const onSubmit = async (data) => {
+    if (isFraud) {
+      return Swal.fire("Access Denied", "Fraud agents cannot add properties.", "error");
+    }
+
     if (parseFloat(data.priceMin) > parseFloat(data.priceMax)) {
       return Swal.fire(
         "Validation Error",
@@ -45,7 +66,7 @@ const AddProperty = () => {
       priceMax: parseFloat(data.priceMax),
       agentName: user?.displayName,
       agentEmail: user?.email,
-      agentImage: user?.photoURL, // ✅ Store profile image
+      agentImage: user?.photoURL,
       status: "pending",
       createdAt: new Date().toISOString(),
     };
@@ -87,10 +108,23 @@ const AddProperty = () => {
     }
   };
 
+  // 🚫 UI for fraud agents
+  if (isFraud) {
+    return (
+      <div className="max-w-2xl mx-auto p-10 text-center bg-red-100 border border-red-400 mt-10 rounded-lg">
+        <h2 className="text-2xl font-bold text-red-600">Access Denied</h2>
+        <p className="mt-2 text-red-500">
+          Your account has been marked as <strong>fraud</strong> by the admin. You are not allowed to add new properties.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-3xl mx-auto bg-base-200 p-6 rounded-lg shadow my-10">
       <h2 className="text-3xl font-bold mb-4 text-center">Add New Property</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* ... (keep your form code as is here) */}
         {/* Title */}
         <div>
           <label className="label">Property Title</label>
