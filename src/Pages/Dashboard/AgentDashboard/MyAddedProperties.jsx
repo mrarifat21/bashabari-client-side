@@ -1,14 +1,15 @@
 import React from "react";
-import useAuth from "../../../../hooks/useAuth";
-// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 import Swal from "sweetalert2";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import useAxios from "../../../../hooks/useAxios";
 import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
+import useAxios from "../../../hooks/useAxios";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyAddedProperties = () => {
   const { user } = useAuth();
-  //   const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
@@ -72,7 +73,7 @@ const MyAddedProperties = () => {
   <div className="p-4">
     <h2 className="text-3xl font-bold mb-6 text-center">My Added Properties</h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {properties.map((property) => (
         <div key={property._id} className="card bg-base-100 shadow-md hover:shadow-xl transition duration-300">
           <figure>

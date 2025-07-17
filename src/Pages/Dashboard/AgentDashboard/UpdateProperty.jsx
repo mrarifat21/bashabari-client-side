@@ -1,17 +1,24 @@
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+
 import Swal from "sweetalert2";
-import useAxios from "../../../../hooks/useAxios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxios from "../../../hooks/useAxios";
+
+
 
 const UpdateProperty = () => {
   const { id } = useParams();
-//   const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
   const axiosSecure = useAxios();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const [imageURL, setImageURL] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   // Fetch property by ID
   const { data: property, isLoading } = useQuery({
@@ -21,7 +28,7 @@ const UpdateProperty = () => {
       return res.data;
     },
   });
-console.log(property);
+
   const {
     register,
     handleSubmit,
@@ -29,20 +36,45 @@ console.log(property);
     formState: { errors },
   } = useForm();
 
-  // After data is loaded, set form default values
+  // Set form default values when property loads
   useEffect(() => {
     if (property) {
       reset({
         title: property.title,
         location: property.location,
-        image: property.image,
         priceMin: property.priceMin,
         priceMax: property.priceMax,
       });
+      setImageURL(property.image); // Set initial image
     }
   }, [property, reset]);
 
-  // Mutation for update
+  // Handle image upload
+  const handleImageUpload = async (e) => {
+    const image = e.target.files[0];
+    if (!image) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const uploadUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_Image_Upload_Key
+    }`;
+
+    try {
+      const res = await axios.post(uploadUrl, formData);
+      const url = res.data.data.url;
+      setImageURL(url);
+    } catch (error) {
+      console.error("Image upload failed", error);
+      Swal.fire("Error", "Image upload failed", "error");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Submit updated data
   const mutation = useMutation({
     mutationFn: (updatedData) =>
       axiosSecure.patch(`/properties/${id}`, updatedData),
@@ -52,7 +84,7 @@ console.log(property);
         queryClient.invalidateQueries(["property", id]);
         navigate("/dashboard/myAddedProperties");
       } else {
-        Swal.fire("Warning", "No changes were made", "warning");
+        Swal.fire("No Changes", "Nothing was updated", "info");
       }
     },
     onError: () => {
@@ -61,12 +93,18 @@ console.log(property);
   });
 
   const onSubmit = (data) => {
+    if (!imageURL) {
+      return Swal.fire("Error", "Please upload an image", "error");
+    }
+
     const updatedProperty = {
       ...data,
+      image: imageURL,
       agentName: property.agentName,
       agentEmail: property.agentEmail,
-      status: "pending", // reset verification
+      status: "pending",
     };
+
     mutation.mutate(updatedProperty);
   };
 
@@ -74,7 +112,8 @@ console.log(property);
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow">
-      <h2 className="text-3xl font-bold mb-4">Update Property</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center">Update Property</h2>
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Title */}
         <div>
@@ -100,47 +139,59 @@ console.log(property);
           )}
         </div>
 
-        {/* Image */}
+        {/* Image Upload */}
         <div>
-          <label className="label">Image URL</label>
+          <label className="label">Upload Image</label>
           <input
-            type="text"
-            {...register("image", { required: true })}
-            className="input input-bordered w-full"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="file-input file-input-bordered w-full"
           />
-          {errors.image && (
-            <p className="text-red-500">Image URL is required</p>
+          {uploading && <p className="text-blue-500">Uploading image...</p>}
+          {imageURL && (
+            <img
+              src={imageURL}
+              alt="Preview"
+              className="w-40 mt-2 rounded-lg border"
+            />
           )}
         </div>
 
         {/* Price */}
-        <div className="flex gap-4">
-          <div className="flex-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
             <label className="label">Minimum Price</label>
             <input
               type="number"
               {...register("priceMin", { required: true })}
               className="input input-bordered w-full"
             />
+            {errors.priceMin && (
+              <p className="text-red-500">Minimum price required</p>
+            )}
           </div>
-          <div className="flex-1">
+          <div>
             <label className="label">Maximum Price</label>
             <input
               type="number"
               {...register("priceMax", { required: true })}
               className="input input-bordered w-full"
             />
+            {errors.priceMax && (
+              <p className="text-red-500">Maximum price required</p>
+            )}
           </div>
         </div>
 
-        {/* Read-only agent info */}
+        {/* Agent Info */}
         <div>
           <label className="label">Agent Name</label>
           <input
             type="text"
             value={property?.agentName}
             readOnly
-            className="input input-bordered w-full "
+            className="input input-bordered w-full"
           />
         </div>
         <div>
@@ -149,11 +200,11 @@ console.log(property);
             type="text"
             value={property?.agentEmail}
             readOnly
-            className="input input-bordered w-full "
+            className="input input-bordered w-full"
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full mt-4">
+        <button type="submit" disabled={uploading} className="btn btn-primary w-full mt-4">
           Update Property
         </button>
       </form>

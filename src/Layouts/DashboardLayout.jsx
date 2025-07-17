@@ -56,7 +56,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
+        <ul className="menu bg-base-200 text-base-content min-h-full w-fit p-4 space-y-2" >
           {/* Sidebar content */}
           <Link to="/" className="text-2xl text-primary font-extrabold mb-4">
             BashaBari
@@ -74,6 +74,7 @@ const DashboardLayout = () => {
             </NavLink>
           </li>
           {/* User */}
+          <p>user</p>
           <li>
             <NavLink to="/dashboard/wishlist">
               <FaHeart /> Wishlist
@@ -89,7 +90,8 @@ const DashboardLayout = () => {
               <FaCommentDots /> My Reviews
             </NavLink>
           </li>
-          {/* Agent */}
+          {/* ===============Agent =======*/}
+          <p>agent</p>
           <li>
             <NavLink to="/dashboard/addProperty">
               <FaPlus /> Add Property
@@ -110,7 +112,8 @@ const DashboardLayout = () => {
               <FaClock /> Requested Properties
             </NavLink>
           </li>
-          {/* Admin */}
+          {/* ===========Admin ==========*/}
+          <p>admin</p>
           <li>
             <NavLink to="/dashboard/manageProperties">
               <FaBuilding /> Manage Properties

@@ -4,12 +4,15 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout";
-import AddProperty from "../Pages/Shared/Dashboard/AgentDashboard/AddProperty";
 import Forbidden from "../Pages/Forbidden/Forbidden";
-import MyAddedProperties from "../Pages/Shared/Dashboard/AgentDashboard/MyAddedProperties";
+
 import PrivateRoutes from "../routes/PrivateRoutes";
-import UpdateProperty from "../Pages/Shared/Dashboard/AgentDashboard/UpdateProperty";
 import AllProperties from "../Pages/AllProperties/AllProperties";
+import AddProperty from "../Pages/Dashboard/AgentDashboard/AddProperty";
+import MyAddedProperties from "../Pages/Dashboard/AgentDashboard/MyAddedProperties";
+import UpdateProperty from "../Pages/Dashboard/AgentDashboard/UpdateProperty";
+import ManageProperties from "../Pages/Dashboard/AdminDashboard/ManageProperties";
+
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +51,7 @@ export const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
-      // agent dashbord
+      // agent dashboard
       {
         path: "addProperty",
         element: <AddProperty></AddProperty>,
@@ -61,6 +64,12 @@ export const router = createBrowserRouter([
         path: "updateProperty/:id",
         element: <UpdateProperty />,
       },
+
+      // admin dashboard
+      {
+        path: 'manageProperties',
+        element: <ManageProperties></ManageProperties>
+      }
     ],
   },
 ]);
