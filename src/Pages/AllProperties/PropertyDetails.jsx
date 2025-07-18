@@ -2,9 +2,10 @@ import React from "react";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
-import profilePlaceholder from './../../assets/profilePlaceholder.jpg';
+import profilePlaceholder from "./../../assets/profilePlaceholder.jpg";
 import AddToWishlistButton from "./AddtoWishlistButton";
-
+import PropertyReviews from "./PropertyReviews";
+import AddReviewModal from "./AddReviewModal";
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const PropertyDetails = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <main className="max-w-4xl mx-auto p-6">
       <h2 className="text-3xl font-bold mb-4 text-primary">{property.title}</h2>
 
       <img
@@ -39,7 +40,8 @@ const PropertyDetails = () => {
           <strong>Location:</strong> {property.location}
         </p>
         <p>
-          <strong>Price Range:</strong> ${property.priceMin} - ${property.priceMax}
+          <strong>Price Range:</strong> ${property.priceMin} - $
+          {property.priceMax}
         </p>
         <div className="flex items-center gap-2 mt-2">
           <strong>Agent:</strong>
@@ -52,8 +54,14 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      <AddToWishlistButton property={property}></AddToWishlistButton>
-    </div>
+      {/* Add to Wishlist */}
+      <AddToWishlistButton property={property} />
+
+      {/* Property Reviews */}
+      <PropertyReviews propertyId={property._id} />
+      {/* Add Review Button */}
+      <AddReviewModal propertyId={property._id} />
+    </main>
   );
 };
 
