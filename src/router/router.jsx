@@ -18,7 +18,10 @@ import ManageReviews from "../Pages/Dashboard/AdminDashboard/ManageReviews";
 import Wishlish from "../Pages/Dashboard/UserDashboard/Wishlish";
 import PropertyBought from "../Pages/Dashboard/UserDashboard/PropertyBought";
 import MyReviews from "../Pages/Dashboard/UserDashboard/MyReviews";
-
+import MakeOffer from "../Pages/Dashboard/UserDashboard/MakeOffer";
+import AdminRoute from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
+import UserRoute from "./UserRoute";
 
 export const router = createBrowserRouter([
   {
@@ -43,15 +46,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "allProperties",
-        element: <PrivateRoutes>
-          <AllProperties></AllProperties>
-        </PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <AllProperties></AllProperties>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "property/:id",
-        element: <PrivateRoutes>
-          <PropertyDetails></PropertyDetails>
-        </PrivateRoutes>
+        element: (
+          <PrivateRoutes>
+            <PropertyDetails></PropertyDetails>
+          </PrivateRoutes>
+        ),
       },
     ],
   },
@@ -66,43 +73,50 @@ export const router = createBrowserRouter([
       // agent dashboard
       {
         path: "addProperty",
-        element: <AddProperty></AddProperty>,
+        element: <AgentRoute><AddProperty></AddProperty></AgentRoute>,
       },
       {
         path: "myAddedProperties",
-        element: <MyAddedProperties></MyAddedProperties>,
+        element: <AgentRoute><MyAddedProperties></MyAddedProperties></AgentRoute>,
       },
       {
         path: "updateProperty/:id",
-        element: <UpdateProperty />,
+        element: <AgentRoute><UpdateProperty /></AgentRoute>,
       },
 
       // admin dashboard
       {
-        path: 'manageProperties',
-        element: <ManageProperties></ManageProperties>
+        path: "manageProperties",
+        element:<AdminRoute><ManageProperties></ManageProperties></AdminRoute> ,
       },
       {
-        path: 'manageUsers',
-        element: <ManageUsers></ManageUsers>
+        path: "manageUsers",
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
       },
       {
-        path: 'manageReviews',
-        element: <ManageReviews></ManageReviews>
+        path: "manageReviews",
+        element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>,
       },
       //user dashboard
       {
-        path: 'wishlist',
-        element: <Wishlish></Wishlish>
+        path: "wishlist",
+        element: <UserRoute><Wishlish></Wishlish></UserRoute>,
       },
       {
-        path: 'propertyBougth',
-        element: <PropertyBought></PropertyBought>
+        path: "propertyBought",
+        element: <UserRoute><PropertyBought></PropertyBought></UserRoute>,
       },
       {
-        path: 'myReviews',
-        element: <MyReviews></MyReviews>
+        path: "myReviews",
+        element: <UserRoute><MyReviews></MyReviews></UserRoute>,
       },
+
+      {
+      path: "make-offer/:id",  
+      element: <UserRoute>d<MakeOffer /></UserRoute>,
+      loader: ({ params }) =>
+        fetch(`http://localhost:3000/wishlist/${params.id}`),
+    },
     ],
   },
 ]);
