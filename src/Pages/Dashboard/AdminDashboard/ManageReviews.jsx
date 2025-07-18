@@ -56,7 +56,7 @@ const ManageReviews = () => {
           <div key={review._id} className="card bg-base-100 shadow border p-4">
             <div className="flex items-center gap-4 mb-2">
               <img
-                src={review.userImage || "/default-avatar.png"}
+                src={review.userPhoto || "/default-avatar.png"}
                 alt="Reviewer"
                 className="w-12 h-12 rounded-full border"
               />

@@ -4,7 +4,7 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
-const AddReviewModal = ({ propertyId }) => {
+const AddReviewModal = ({  propertyId, propertyTitle, agentName }) => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
@@ -17,6 +17,8 @@ const AddReviewModal = ({ propertyId }) => {
 
     const reviewData = {
       propertyId,
+      agentName,
+      propertyTitle,
       userEmail: user.email,
       userName: user.displayName,
       userPhoto: user.photoURL,

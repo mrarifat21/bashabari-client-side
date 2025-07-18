@@ -73,7 +73,7 @@ const DashboardLayout = () => {
               <FaUser /> My Profile
             </NavLink>
           </li>
-          {/* User */}
+          {/* =============User========== */}
           <p>user</p>
           <li>
             <NavLink to="/dashboard/wishlist">

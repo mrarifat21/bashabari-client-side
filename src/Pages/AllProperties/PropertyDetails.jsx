@@ -60,7 +60,7 @@ const PropertyDetails = () => {
       {/* Property Reviews */}
       <PropertyReviews propertyId={property._id} />
       {/* Add Review Button */}
-      <AddReviewModal propertyId={property._id} />
+      <AddReviewModal propertyId={property._id} agentName={property.agentName} propertyTitle={property.title} />
     </main>
   );
 };

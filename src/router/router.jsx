@@ -15,6 +15,9 @@ import ManageProperties from "../Pages/Dashboard/AdminDashboard/ManageProperties
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import ManageReviews from "../Pages/Dashboard/AdminDashboard/ManageReviews";
+import Wishlish from "../Pages/Dashboard/UserDashboard/Wishlish";
+import PropertyBought from "../Pages/Dashboard/UserDashboard/PropertyBought";
+import MyReviews from "../Pages/Dashboard/UserDashboard/MyReviews";
 
 
 export const router = createBrowserRouter([
@@ -86,6 +89,19 @@ export const router = createBrowserRouter([
       {
         path: 'manageReviews',
         element: <ManageReviews></ManageReviews>
+      },
+      //user dashboard
+      {
+        path: 'wishlist',
+        element: <Wishlish></Wishlish>
+      },
+      {
+        path: 'propertyBougth',
+        element: <PropertyBought></PropertyBought>
+      },
+      {
+        path: 'myReviews',
+        element: <MyReviews></MyReviews>
       },
     ],
   },
