@@ -22,6 +22,8 @@ import MakeOffer from "../Pages/Dashboard/UserDashboard/MakeOffer";
 import AdminRoute from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import UserRoute from "./UserRoute";
+import Profile from "../Pages/Profile/Profile";
+import AdvertiseProperty from "../Pages/Dashboard/AdminDashboard/AdvertiseProperty";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +72,10 @@ export const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      {
+        path: 'profile',
+        element: <Profile></Profile>
+      },
       // agent dashboard
       {
         path: "addProperty",
@@ -97,6 +103,10 @@ export const router = createBrowserRouter([
         path: "manageReviews",
         element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>,
       },
+      {
+        path: "advertiseProperty",
+        element: <AdminRoute><AdvertiseProperty></AdvertiseProperty></AdminRoute>,
+      },
       //user dashboard
       {
         path: "wishlist",
@@ -110,10 +120,9 @@ export const router = createBrowserRouter([
         path: "myReviews",
         element: <UserRoute><MyReviews></MyReviews></UserRoute>,
       },
-
       {
       path: "make-offer/:id",  
-      element: <UserRoute>d<MakeOffer /></UserRoute>,
+      element: <UserRoute><MakeOffer /></UserRoute>,
       loader: ({ params }) =>
         fetch(`http://localhost:3000/wishlist/${params.id}`),
     },

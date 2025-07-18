@@ -71,13 +71,13 @@ const DashboardLayout = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/myProfile">
+            <NavLink to="/dashboard/Profile">
               <FaUser /> My Profile
             </NavLink>
           </li>
           {/* =============User========== */}
 
-          {!roleLoading && role == "admin" && (
+          {!roleLoading && role == "user" && (
             <>
               <li>
                 <NavLink to="/dashboard/wishlist">
@@ -140,6 +140,11 @@ const DashboardLayout = () => {
               <li>
                 <NavLink to="/dashboard/manageReviews">
                   <FaComments /> Manage Reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/advertiseProperty">
+                  <FaComments /> Advertise property
                 </NavLink>
               </li>
             </>
