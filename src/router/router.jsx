@@ -72,61 +72,105 @@ export const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
-      
       {
-        path: 'profile',
-        element: <Profile></Profile>
+        path: "profile",
+        element: <Profile></Profile>,
       },
       // agent dashboard
       {
         path: "addProperty",
-        element: <AgentRoute><AddProperty></AddProperty></AgentRoute>,
+        element: (
+          <AgentRoute>
+            <AddProperty></AddProperty>
+          </AgentRoute>
+        ),
       },
       {
         path: "myAddedProperties",
-        element: <AgentRoute><MyAddedProperties></MyAddedProperties></AgentRoute>,
+        element: (
+          <AgentRoute>
+            <MyAddedProperties></MyAddedProperties>
+          </AgentRoute>
+        ),
       },
       {
         path: "updateProperty/:id",
-        element: <AgentRoute><UpdateProperty /></AgentRoute>,
+        element: (
+          <AgentRoute>
+            <UpdateProperty />
+          </AgentRoute>
+        ),
       },
 
       // admin dashboard
       {
         path: "manageProperties",
-        element:<AdminRoute><ManageProperties></ManageProperties></AdminRoute> ,
+        element: (
+          <AdminRoute>
+            <ManageProperties></ManageProperties>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageUsers",
-        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageReviews",
-        element: <AdminRoute><ManageReviews></ManageReviews></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageReviews></ManageReviews>
+          </AdminRoute>
+        ),
       },
       {
         path: "advertiseProperty",
-        element: <AdminRoute><AdvertiseProperty></AdvertiseProperty></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AdvertiseProperty></AdvertiseProperty>
+          </AdminRoute>
+        ),
       },
       //user dashboard
       {
         path: "wishlist",
-        element: <UserRoute><Wishlish></Wishlish></UserRoute>,
+        element: (
+          <UserRoute>
+            <Wishlish></Wishlish>
+          </UserRoute>
+        ),
       },
       {
         path: "propertyBought",
-        element: <UserRoute><PropertyBought></PropertyBought></UserRoute>,
+        element: (
+          <UserRoute>
+            <PropertyBought></PropertyBought>
+          </UserRoute>
+        ),
       },
       {
         path: "myReviews",
-        element: <UserRoute><MyReviews></MyReviews></UserRoute>,
+        element: (
+          <UserRoute>
+            <MyReviews></MyReviews>
+          </UserRoute>
+        ),
       },
       {
-      path: "make-offer/:id",  
-      element: <UserRoute><MakeOffer /></UserRoute>,
-      loader: ({ params }) =>
-        fetch(`http://localhost:3000/wishlist/${params.id}`),
-    },
+        path: "make-offer/:id",
+        element: (
+          <UserRoute>
+            <MakeOffer />
+          </UserRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/wishlist/${params.id}`),
+      },
+    
     ],
   },
 ]);

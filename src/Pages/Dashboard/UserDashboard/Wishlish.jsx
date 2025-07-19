@@ -42,6 +42,7 @@ const Wishlist = () => {
   };
 
   if (isLoading) return <p>Loading...</p>;
+ 
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -61,7 +62,7 @@ const Wishlist = () => {
               )}
             </div>
             <div className="flex gap-2 mt-4">
-              <Link to={`/dashboard/make-offer/${item._id}d`}>
+              <Link to={`/dashboard/make-offer/${item._id}`}>
                 <button className="btn btn-primary btn-sm">Make Offer</button>
               </Link>
               <button onClick={() => handleRemove(item._id)} className="btn btn-error btn-sm">Remove</button>

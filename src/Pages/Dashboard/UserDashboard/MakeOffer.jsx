@@ -9,23 +9,26 @@ const MakeOffer = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
-// console.log(property.title);
+console.log(property);
   const onSubmit = async (data) => {
     const offerAmount = parseFloat(data.offerAmount);
     if (offerAmount < property.priceMin || offerAmount > property.priceMax) {
-      Swal.fire("Invalid", `Offer must be between $${property.priceMin} and $${property.priceMax}`, "error");
+      Swal.fire(
+        "Invalid",
+        `Offer must be between $${property.priceMin} and $${property.priceMax}`,
+        "error"
+      );
       return;
     }
-console.log(property);
     const offer = {
-      propertyId: property.propertyId,
-      propertyImage: property.image,
+      propertyId: property._id,
+      propertyImage: property.propertyImage,
       propertyTitle: property.propertyTitle,
       propertyLocation: property.propertyLocation,
       agentName: property.agentName,
-      buyerName: user.name,
+      buyerName: user.displayName,
       buyerEmail: user.email,
-      buyerImage: user.image || "",
+      buyerImage: user.photoURL || "",
       offerAmount,
       buyingDate: data.buyingDate,
       priceMin: property.priceMin,
@@ -44,34 +47,70 @@ console.log(property);
     <div className="w-full max-w-xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-4">Make an Offer</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-
         <div>
-          <label htmlFor="propertyTitle" className="label">Property Title</label>
-          <input id="propertyTitle" className="input input-bordered w-full" value={property.propertyTitle} readOnly />
+          <label htmlFor="propertyTitle" className="label">
+            Property Title
+          </label>
+          <input
+            id="propertyTitle"
+            className="input input-bordered w-full"
+            value={property.propertyTitle}
+            readOnly
+          />
         </div>
 
         <div>
-          <label htmlFor="propertyLocation" className="label">Location</label>
-          <input id="propertyLocation" className="input input-bordered w-full" value={property.propertyLocation} readOnly />
+          <label htmlFor="propertyLocation" className="label">
+            Location
+          </label>
+          <input
+            id="propertyLocation"
+            className="input input-bordered w-full"
+            value={property.propertyLocation}
+            readOnly
+          />
         </div>
 
         <div>
-          <label htmlFor="agentName" className="label">Agent Name</label>
-          <input id="agentName" className="input input-bordered w-full" value={property.agentName} readOnly />
+          <label htmlFor="agentName" className="label">
+            Agent Name
+          </label>
+          <input
+            id="agentName"
+            className="input input-bordered w-full"
+            value={property.agentName}
+            readOnly
+          />
         </div>
 
         <div>
-          <label htmlFor="buyerName" className="label">Your Name</label>
-          <input id="buyerName" className="input input-bordered w-full" value={user.displayName} readOnly />
+          <label htmlFor="buyerName" className="label">
+            Your Name
+          </label>
+          <input
+            id="buyerName"
+            className="input input-bordered w-full"
+            value={user.displayName}
+            readOnly
+          />
         </div>
 
         <div>
-          <label htmlFor="buyerEmail" className="label">Your Email</label>
-          <input id="buyerEmail" className="input input-bordered w-full" value={user.email} readOnly />
+          <label htmlFor="buyerEmail" className="label">
+            Your Email
+          </label>
+          <input
+            id="buyerEmail"
+            className="input input-bordered w-full"
+            value={user.email}
+            readOnly
+          />
         </div>
 
         <div>
-          <label htmlFor="offerAmount" className="label">Offer Amount</label>
+          <label htmlFor="offerAmount" className="label">
+            Offer Amount
+          </label>
           <input
             id="offerAmount"
             type="number"
@@ -82,7 +121,9 @@ console.log(property);
         </div>
 
         <div>
-          <label htmlFor="buyingDate" className="label">Preferred Buying Date</label>
+          <label htmlFor="buyingDate" className="label">
+            Preferred Buying Date
+          </label>
           <input
             id="buyingDate"
             type="date"
@@ -92,7 +133,9 @@ console.log(property);
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full mt-4">Send Offer</button>
+        <button type="submit" className="btn btn-primary w-full mt-4">
+          Send Offer
+        </button>
       </form>
     </div>
   );
