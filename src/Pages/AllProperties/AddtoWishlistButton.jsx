@@ -8,7 +8,8 @@ const AddToWishlistButton = ({ property }) => {
   const axiosSecure = useAxios();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-  // 🔍 Check if property already in wishlist
+
+  // ✅ Check if property already in wishlist
   useEffect(() => {
     const checkWishlist = async () => {
       if (user && property?._id) {
@@ -26,6 +27,7 @@ const AddToWishlistButton = ({ property }) => {
     checkWishlist();
   }, [user, property?._id, axiosSecure]);
 
+  // ✅ Handle Add to Wishlist
   const handleAddToWishlist = async () => {
     if (!user) {
       return Swal.fire("Unauthorized", "Please log in to add to wishlist", "warning");
@@ -34,14 +36,14 @@ const AddToWishlistButton = ({ property }) => {
     setIsAdding(true);
     const wishlistData = {
       userEmail: user.email,
-      propertyId: property._id,
+      propertyId: String(property._id), // ensure string
       propertyTitle: property.title,
       propertyImage: property.image,
       priceMin: property.priceMin,
       priceMax: property.priceMax,
       agentName: property.agentName,
-      propertyLocation: property.location,
       agentImage: property.agentImage,
+      propertyLocation: property.location,
       propertyStatus: property.status,
       addedAt: new Date(),
     };
@@ -49,13 +51,24 @@ const AddToWishlistButton = ({ property }) => {
     try {
       const res = await axiosSecure.post("/wishlist", wishlistData);
       if (res.data.insertedId) {
-        Swal.fire("Added!", "Property added to your wishlist.", "success");
+        Swal.fire({
+          title: "Added!",
+          text: "Property added to your wishlist.",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
         setIsAdded(true);
       } else {
         Swal.fire("Failed", "Could not add to wishlist", "error");
       }
     } catch (err) {
-      Swal.fire("Error", err.message || "Something went wrong", "error");
+      if (err.response?.status === 400) {
+        Swal.fire("Already Added", err.response.data.message, "info");
+        setIsAdded(true);
+      } else {
+        Swal.fire("Error", err.message || "Something went wrong", "error");
+      }
     } finally {
       setIsAdding(false);
     }

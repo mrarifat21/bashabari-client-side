@@ -9,14 +9,14 @@ const MakeOffer = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
-console.log(property.title);
+// console.log(property.title);
   const onSubmit = async (data) => {
     const offerAmount = parseFloat(data.offerAmount);
     if (offerAmount < property.priceMin || offerAmount > property.priceMax) {
       Swal.fire("Invalid", `Offer must be between $${property.priceMin} and $${property.priceMax}`, "error");
       return;
     }
-
+console.log(property);
     const offer = {
       propertyId: property.propertyId,
       propertyImage: property.image,

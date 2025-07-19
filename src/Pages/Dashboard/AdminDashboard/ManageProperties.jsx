@@ -30,7 +30,13 @@ const ManageProperties = () => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire("Updated!", "Property status has been changed.", "success");
+      Swal.fire({
+        title: "Updated!",
+        text: "Property status has been changed.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
       queryClient.invalidateQueries(["pendingProperties"]);
     },
   });
