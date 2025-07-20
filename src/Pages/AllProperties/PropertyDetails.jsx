@@ -20,47 +20,67 @@ const PropertyDetails = () => {
   });
 
   if (isLoading) {
-    return <div className="text-center mt-10 text-xl">Loading property...</div>;
+    return (
+      <div className="text-center mt-10 text-xl text-secondary-content">
+        Loading property...
+      </div>
+    );
   }
 
   return (
-    <main className="max-w-4xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-4 text-primary">{property.title}</h2>
+    <main className="max-w-5xl mx-auto p-6 space-y-6 bg-base-200 rounded-xl shadow-lg mt-6">
+      {/* Title */}
+      <h2 className="text-4xl font-extrabold text-primary">{property.title}</h2>
 
+      {/* Image */}
       <img
         src={property.image}
         alt={property.title}
-        className="w-full h-64 object-cover rounded-lg mb-4"
+        className="w-full h-72 object-cover rounded-lg shadow-md"
       />
 
-      <p className="text-lg  mb-4">{property.description}</p>
+      {/* Description */}
+      <p className="text-base-content text-lg leading-relaxed">
+        {property.description}
+      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm ">
-        <p>
-          <strong>Location:</strong> {property.location}
+      {/* Info Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-base-100 p-6 rounded-lg shadow-inner">
+        <p className="text-base-content">
+          <strong className="">📍 Location:</strong>{" "}
+          {property.location}
         </p>
-        <p>
-          <strong>Price Range:</strong> ${property.priceMin} - $
-          {property.priceMax}
+        <p className="text-base-content">
+          <strong className="">💰 Price Range:</strong> ${property.priceMin} - ${property.priceMax}
         </p>
-        <div className="flex items-center gap-2 mt-2">
-          <strong>Agent:</strong>
+        <div className="flex items-center gap-3 col-span-2 mt-2">
+          <strong className="">👤 Agent:</strong>
           <img
             src={property.agentImage || profilePlaceholder}
             alt="Agent"
-            className="w-8 h-8 rounded-full object-cover border"
+            className="w-10 h-10 rounded-full object-cover border-2 border-primary"
           />
-          <span>{property.agentName}</span>
+          <span className="text-base-content font-medium">
+            {property.agentName}
+          </span>
         </div>
       </div>
 
-      {/* Add to Wishlist */}
-      <AddToWishlistButton property={property} />
+      {/* Wishlist Button */}
+      <div className="mt-4">
+        <AddToWishlistButton property={property} />
+      </div>
 
-      {/* Property Reviews */}
-      <PropertyReviews propertyId={property._id} />
-      {/* Add Review Button */}
-      <AddReviewModal propertyId={property._id} agentName={property.agentName} propertyTitle={property.title} />
+      {/* Reviews Section */}
+      <section className="bg-base-100 p-6 rounded-lg shadow-inner space-y-4">
+        <h3 className="text-2xl font-semibold text-primary">Reviews</h3>
+        <PropertyReviews propertyId={property._id} />
+        <AddReviewModal
+          propertyId={property._id}
+          agentName={property.agentName}
+          propertyTitle={property.title}
+        />
+      </section>
     </main>
   );
 };

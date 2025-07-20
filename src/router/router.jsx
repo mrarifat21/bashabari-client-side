@@ -25,6 +25,7 @@ import UserRoute from "./UserRoute";
 import Profile from "../Pages/Profile/Profile";
 import AdvertiseProperty from "../Pages/Dashboard/AdminDashboard/AdvertiseProperty";
 import RequestedProperties from "../Pages/Dashboard/AgentDashboard/RequestedProperties";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -182,4 +183,8 @@ export const router = createBrowserRouter([
     
     ],
   },
+  {
+    path: '*',
+    Component: ErrorPage
+  }
 ]);

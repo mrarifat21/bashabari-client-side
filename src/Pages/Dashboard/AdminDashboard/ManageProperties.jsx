@@ -37,7 +37,7 @@ const ManageProperties = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-      queryClient.invalidateQueries(["pendingProperties"]);
+      queryClient.invalidateQueries(["pending-properties"]);
     },
   });
 
@@ -59,93 +59,110 @@ const ManageProperties = () => {
   };
 
   if (isLoading)
-    return <p className="text-center py-10">Loading properties...</p>;
+    return (
+      <p className="text-center py-10 text-primary font-semibold text-lg">
+        Loading properties...
+      </p>
+    );
   if (isError)
     return (
-      <p className="text-center text-red-500 py-10">
+      <p className="text-center text-error py-10 font-semibold text-lg">
         Failed to load properties.
       </p>
     );
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Pending Properties</h2>
+    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-base-300">
+      <h2 className="text-3xl font-bold mb-6 text-primary text-center">
+        Manage Pending Properties
+      </h2>
 
       {pendingProperties.length === 0 ? (
-        <p className="text-gray-500">No pending properties found.</p>
+        <p className="text-center text-secondary-content text-lg">
+          No pending properties found.
+        </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Location</th>
-                <th>Agent Name</th>
-                <th>Agent Eamil</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pendingProperties.map((property, index) => (
-                <tr key={property._id}>
-                  <td>{index + 1}</td>
-                  <td>
-                    <img
-                      src={property.image}
-                      alt="property"
-                      className="w-20 h-12 object-cover rounded"
-                    />
-                  </td>
-                  <td>{property.title}</td>
-                  <td>{property.location}</td>
-                  <td>{property.agentName}</td>
-                  <td>{property.agentEmail}</td>
-                  <td>
-                    ${property.priceMin} - ${property.priceMax}
-                  </td>
+        <table className="table w-full table-zebra">
+          <thead className="bg-primary text-primary-content">
+            <tr>
+              <th className="text-center">#</th>
+              <th className="text-center">Image</th>
+              <th className="text-left">Title</th>
+              <th className="text-left">Location</th>
+              <th className="text-left">Agent Name</th>
+              <th className="text-left">Agent Email</th>
+              <th className="text-left">Price</th>
+              <th className="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pendingProperties.map((property, index) => (
+              <tr
+                key={property._id}
+                className="hover:bg-base-300 transition-colors duration-200"
+              >
+                <td className="text-center font-semibold">{index + 1}</td>
+                <td className="p-2">
+                  <img
+                    src={property.image}
+                    alt="property"
+                    className="w-20 h-16 object-cover rounded-lg mx-auto"
+                  />
+                </td>
+                <td className="max-w-xs truncate" title={property.title}>
+                  {property.title}
+                </td>
+                <td className="max-w-xs truncate" title={property.location}>
+                  {property.location}
+                </td>
+                <td className="max-w-xs truncate" title={property.agentName}>
+                  {property.agentName}
+                </td>
+                <td className="max-w-xs truncate" title={property.agentEmail}>
+                  {property.agentEmail}
+                </td>
+                <td>
+                  ${property.priceMin} - ${property.priceMax}
+                </td>
 
-                  <td className="flex gap-2">
-                    {property.status === "pending" ? (
-                      <>
-                        <button
-                          onClick={() =>
-                            handleStatusChange(property._id, "verified")
-                          }
-                          className="btn btn-xs btn-success"
-                        >
-                          Approve
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleStatusChange(property._id, "rejected")
-                          }
-                          className="btn btn-xs btn-error"
-                        >
-                          Reject
-                        </button>
-                      </>
-                    ) : (
-                      <span
-                        className={`badge text-white ${
-                          property.status === "verified"
-                            ? "bg-success"
-                            : property.status === "rejected"
-                            ? "bg-error"
-                            : "bg-gray-400"
-                        }`}
+                <td className="text-center">
+                  {property.status === "pending" ? (
+                    <div className="flex flex-col sm:flex-row justify-center gap-2">
+                      <button
+                        onClick={() =>
+                          handleStatusChange(property._id, "verified")
+                        }
+                        className="btn btn-sm btn-success"
                       >
-                        {property.status}
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                        Approve
+                      </button>
+                      <button
+                        onClick={() =>
+                          handleStatusChange(property._id, "rejected")
+                        }
+                        className="btn btn-sm btn-error"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  ) : (
+                    <span
+                      className={`badge rounded-xs text-white p-2 ${
+                        property.status === "verified"
+                          ? "badge-success"
+                          : property.status === "rejected"
+                          ? "badge-error"
+                          : "badge-neutral"
+                      }`}
+                    >
+                      {property.status}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

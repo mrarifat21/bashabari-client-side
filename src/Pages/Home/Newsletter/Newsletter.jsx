@@ -15,18 +15,23 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-base-200 py-12 px-4">
+    <section className="bg-secondary text-secondary-content py-12 px-4">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-3 text-primary">Subscribe to Our Newsletter</h2>
-        <p className="mb-6 text-base-content">
+        <h2 className="text-3xl font-bold mb-3 text-primary">
+          Subscribe to Our Newsletter
+        </h2>
+        <p className="mb-6 text-base-content dark:text-gray-300">
           Get the latest property updates, offers, and Bashabari news straight to your inbox.
         </p>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row items-center gap-4 justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col sm:flex-row items-center gap-4 justify-center"
+        >
           <input
             type="email"
             placeholder="Enter your email"
             {...register("email", { required: true })}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs bg-base-100 text-base-content"
           />
           <button type="submit" className="btn btn-primary">
             Subscribe

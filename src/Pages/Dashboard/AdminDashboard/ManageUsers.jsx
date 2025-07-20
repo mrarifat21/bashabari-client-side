@@ -5,7 +5,7 @@ import useAxios from "../../../hooks/useAxios";
 
 const ManageUsers = () => {
   const axiosSecure = useAxios();
-//   const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
   // Fetch all users
@@ -83,81 +83,96 @@ const ManageUsers = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center">Loading users...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center py-10 text-primary font-semibold text-lg">
+        Loading users...
+      </p>
+    );
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full table-zebra">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Make Admin</th>
-              <th>Make Agent</th>
-              <th>Mark Fraud</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, i) => (
-              <tr key={user._id}>
-                <td>{i + 1}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  {user.status === "fraud" ? (
-                    <span className="badge badge-error">Fraud</span>
-                  ) : (
-                    user.role
-                  )}
-                </td>
-                <td>
-                  {user.status !== "fraud" && user.role !== "admin" && (
-                    <button
-                      onClick={() => handleRoleChange(user._id, "admin")}
-                      className="btn btn-xs btn-info"
-                    >
-                      Make Admin
-                    </button>
-                  )}
-                </td>
-                <td>
-                  {user.status !== "fraud" && user.role !== "agent" && (
-                    <button
-                      onClick={() => handleRoleChange(user._id, "agent")}
-                      className="btn btn-xs btn-success"
-                    >
-                      Make Agent
-                    </button>
-                  )}
-                </td>
-                <td>
-                  {user.role === "agent" && user.status !== "fraud" && (
-                    <button
-                      onClick={() => handleMarkFraud(user._id)}
-                      className="btn btn-xs btn-warning"
-                    >
-                      Mark as Fraud
-                    </button>
-                  )}
-                </td>
-                <td>
+    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-base-300">
+      <h2 className="text-3xl font-bold mb-6 text-primary text-center">Manage Users</h2>
+
+      <table className="table w-full table-zebra">
+        <thead className="bg-primary text-primary-content">
+          <tr>
+            <th className="text-center">#</th>
+            <th className="text-left">Name</th>
+            <th className="text-left">Email</th>
+            <th className="text-center">Role</th>
+            <th className="text-center">Make Admin</th>
+            <th className="text-center">Make Agent</th>
+            <th className="text-center">Mark Fraud</th>
+            <th className="text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, i) => (
+            <tr
+              key={user._id}
+              className="hover:bg-base-300 transition-colors duration-200"
+            >
+              <td className="text-center font-semibold">{i + 1}</td>
+              <td className="max-w-xs truncate" title={user.name}>
+                {user.name}
+              </td>
+              <td className="max-w-xs truncate" title={user.email}>
+                {user.email}
+              </td>
+              <td className="text-center ">
+                {user.status === "fraud" ? (
+                  <span className="badge rounded-xs p-2 badge-error">Fraud</span>
+                ) : (
+                  <span className="capitalize">{user.role}</span>
+                )}
+              </td>
+              <td className="text-center ">
+                {user.status !== "fraud" && user.role !== "admin" && (
                   <button
-                    onClick={() => handleDelete(user._id)}
-                    className="btn btn-xs btn-error"
+                    onClick={() => handleRoleChange(user._id, "admin")}
+                    className="btn btn-xs btn-info px-3 py-1 rounded-md font-semibold hover:bg-info-focus transition border-1 text-black"
+                    style={{ minWidth: "90px" }}
                   >
-                    Delete
+                    Make Admin
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                )}
+              </td>
+              <td className="text-center">
+                {user.status !== "fraud" && user.role !== "agent" && (
+                  <button
+                    onClick={() => handleRoleChange(user._id, "agent")}
+                    className="btn btn-xs btn-success px-3 py-1 rounded-md font-semibold hover:bg-success-focus transition border-1 text-black"
+                    style={{ minWidth: "90px" }}
+                  >
+                    Make Agent
+                  </button>
+                )}
+              </td>
+              <td className="text-center">
+                {user.role === "agent" && user.status !== "fraud" && (
+                  <button
+                    onClick={() => handleMarkFraud(user._id)}
+                    className="btn btn-xs btn-warning px-3 py-1 rounded-md font-semibold hover:bg-warning-focus transition border-1 text-black"
+                    style={{ minWidth: "110px" }}
+                  >
+                    Mark as Fraud
+                  </button>
+                )}
+              </td>
+              <td className="text-center">
+                <button
+                  onClick={() => handleDelete(user._id)}
+                  className="btn btn-xs btn-error px-3 py-1 rounded-md font-semibold hover:bg-error-focus transition border-1"
+                  style={{ minWidth: "70px" }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

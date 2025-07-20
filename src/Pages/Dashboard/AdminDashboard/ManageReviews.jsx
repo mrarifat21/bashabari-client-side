@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import useAxios from "../../../hooks/useAxios";
 
 const ManageReviews = () => {
-//   const axiosSecure = useAxiosSecure();
+  //   const axiosSecure = useAxiosSecure();
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
 
@@ -46,34 +46,52 @@ const ManageReviews = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center py-8">Loading...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center py-8 text-secondary-content font-semibold text-lg">
+        Loading...
+      </p>
+    );
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Manage Reviews</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold mb-8 text-primary text-center">
+        Manage Reviews
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {reviews.map((review) => (
-          <div key={review._id} className="card bg-base-100 shadow border p-4">
-            <div className="flex items-center gap-4 mb-2">
+          <div
+            key={review._id}
+            className="card bg-base-200 shadow-lg border border-base-300 p-5 rounded-2xl flex flex-col"
+          >
+            <div className="flex items-center gap-4 mb-4">
               <img
                 src={review.userPhoto || "/default-avatar.png"}
                 alt="Reviewer"
-                className="w-12 h-12 rounded-full border"
+                className="w-14 h-14 rounded-full border-2 border-primary object-cover"
               />
-              <div>
-                <p className="font-semibold">{review.userName}</p>
-                <p className="text-sm text-gray-500">{review.userEmail}</p>
+              <div className="overflow-hidden">
+                <p className="font-semibold text-lg truncate">{review.userName}</p>
+                <p className="text-sm text-secondary-content truncate max-w-xs">
+                  {review.userEmail}
+                </p>
               </div>
             </div>
-            <div className="flex gap-1 text-yellow-500 mb-2">
+
+            <div className="flex gap-1 text-yellow-400 mb-4">
               {[...Array(review.rating)].map((_, i) => (
                 <FaStar key={i} />
               ))}
             </div>
-            <p className="text-gray-700 mb-4">{review.comment}</p>
+
+            <p className="text-base-content mb-6 flex-grow break-words whitespace-pre-wrap">
+              {review.comment}
+            </p>
+
             <button
               onClick={() => handleDelete(review._id)}
-              className="btn btn-error btn-sm flex items-center gap-2"
+              className="btn btn-error btn-sm flex items-center gap-2 self-start hover:bg-error/90 transition-colors duration-200"
+              aria-label={`Delete review by ${review.userName}`}
             >
               <FaTrashAlt /> Delete
             </button>

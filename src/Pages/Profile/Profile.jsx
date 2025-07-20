@@ -1,6 +1,5 @@
 import React from "react";
-
-import { FaUserShield, FaUserTie, FaUserCircle } from "react-icons/fa";
+import { FaUserShield, FaUserTie } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import useUserRole from "../../hooks/useUserRole";
 
@@ -9,14 +8,18 @@ const Profile = () => {
   const { role, isLoading } = useUserRole();
 
   if (isLoading || !user) {
-    return <div className="text-center py-20">Loading profile...</div>;
+    return (
+      <div className="text-center py-20 text-secondary text-lg font-semibold">
+        Loading profile...
+      </div>
+    );
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <div className="border rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-6">
+    <div className="max-w-4xl mx-auto p-6 sm:p-8">
+      <div className="bg-base-200 border border-base-300 rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-8">
         {/* Profile image */}
-        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary">
+        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary flex-shrink-0">
           <img
             src={user?.photoURL || "https://i.ibb.co/vq1kZ2J/default-user.png"}
             alt="User"
@@ -25,36 +28,34 @@ const Profile = () => {
         </div>
 
         {/* User Info */}
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold">{user?.displayName}</h2>
-          <p className=" mt-1">{user?.email}</p>
+        <div className="flex-1 text-base-content">
+          <h2 className="text-3xl font-extrabold mb-1">{user?.displayName}</h2>
+          <p className="text-primary mb-3 break-words">{user?.email}</p>
 
           {role === "admin" && (
-            <p className="mt-2 text-primary font-medium flex items-center gap-2">
+            <p className="inline-flex items-center gap-2 text-primary font-semibold text-lg">
               <FaUserShield /> Admin
             </p>
           )}
 
           {role === "agent" && (
-            <p className="mt-2 text-blue-600 font-medium flex items-center gap-2">
+            <p className="inline-flex items-center gap-2 text-primary font-semibold text-lg">
               <FaUserTie /> Agent
             </p>
           )}
-
-          {/* No role shown for regular users */}
         </div>
       </div>
 
-      {/* Optional additional info */}
-      <div className="mt-6 bg-base-100 p-4 rounded-xl shadow-md">
-        <h3 className="text-lg font-semibold mb-2">Account Details</h3>
-        <ul className="text-sm  space-y-1">
+      {/* Additional account info */}
+      <div className="mt-8 bg-base-300 p-6 rounded-2xl shadow-md text-base-content max-w-md mx-auto sm:mx-0">
+        <h3 className="text-xl font-bold mb-4 text-primary">Account Details</h3>
+        <ul className="text-sm space-y-3">
           <li>
-            <span className="font-medium">Email:</span> {user.email}
+            <span className="font-semibold">Email:</span> {user.email}
           </li>
-          
+
           <li>
-            <span className="font-medium">Join Date:</span>{" "}
+            <span className="font-semibold">Join Date:</span>{" "}
             {user?.metadata?.creationTime
               ? new Date(user.metadata.creationTime).toLocaleDateString()
               : "N/A"}

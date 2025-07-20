@@ -4,7 +4,7 @@ import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
-const AddReviewModal = ({  propertyId, propertyTitle, agentName }) => {
+const AddReviewModal = ({ propertyId, propertyTitle, agentName }) => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
@@ -46,40 +46,52 @@ const AddReviewModal = ({  propertyId, propertyTitle, agentName }) => {
 
   return (
     <>
-      <button className="btn btn-outline btn-info mt-6" onClick={() => document.getElementById("add_review_modal").showModal()}>
+      <button
+        className="btn btn-outline btn-primary mt-6"
+        onClick={() => document.getElementById("add_review_modal").showModal()}
+      >
         Add a Review 📝
       </button>
 
-      <dialog id="add_review_modal" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-xl mb-4">Write a Review</h3>
+      <dialog id="add_review_modal" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box bg-base-200 text-base-content shadow-lg border border-secondary">
+          <h3 className="text-2xl font-semibold text-primary mb-6">Write a Review</h3>
+
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Rating Input */}
             <div>
-              <label className="label">Rating (1 to 5)</label>
+              <label className="label text-secondary-content font-semibold">Rating (1 to 5)</label>
               <input
                 type="number"
                 step="0.1"
                 min="1"
                 max="5"
                 {...register("rating", { required: true })}
-                className="input input-bordered w-full"
+                className="input input-bordered w-full bg-base-100"
               />
             </div>
 
+            {/* Comment Input */}
             <div>
-              <label className="label">Comment</label>
+              <label className="label text-secondary-content font-semibold">Comment</label>
               <textarea
                 {...register("comment", { required: true })}
-                className="textarea textarea-bordered w-full"
-                rows={3}
+                className="textarea textarea-bordered w-full bg-base-100"
+                rows={4}
+                placeholder="Share your experience..."
               />
             </div>
 
+            {/* Actions */}
             <div className="modal-action">
               <button type="submit" className="btn btn-primary" disabled={loading}>
                 {loading ? "Submitting..." : "Submit Review"}
               </button>
-              <button type="button" className="btn" onClick={() => document.getElementById("add_review_modal").close()}>
+              <button
+                type="button"
+                className="btn btn-ghost"
+                onClick={() => document.getElementById("add_review_modal").close()}
+              >
                 Cancel
               </button>
             </div>
