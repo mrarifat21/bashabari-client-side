@@ -20,12 +20,14 @@ console.log(property);
       );
       return;
     }
+    
     const offer = {
       propertyId: property._id,
       propertyImage: property.propertyImage,
       propertyTitle: property.propertyTitle,
       propertyLocation: property.propertyLocation,
       agentName: property.agentName,
+      agentEmail: property.agentEmail,
       buyerName: user.displayName,
       buyerEmail: user.email,
       buyerImage: user.photoURL || "",

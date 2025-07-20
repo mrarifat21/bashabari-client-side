@@ -19,7 +19,7 @@ const Advertise = () => {
   if (error) return <p>Failed to load advertised properties.</p>;
   return (
     <section className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6">Featured Properties</h2>
+      <h2 className="text-3xl font-bold mb-10 text-center my-20">Featured Properties</h2>
       {advertisedProperties.length === 0 ? (
         <p>No advertised properties found.</p>
       ) : (

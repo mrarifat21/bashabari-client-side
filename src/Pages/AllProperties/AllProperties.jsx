@@ -17,45 +17,47 @@ const AllProperties = () => {
     },
   });
 
-  // Filter based on location
   const filteredProperties = properties.filter((property) =>
     property.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sort based on price range
   const sortedProperties = [...filteredProperties].sort((a, b) => {
     const aMin = parseFloat(a.priceMin);
     const bMin = parseFloat(b.priceMin);
 
     if (sortOrder === "low-to-high") return aMin - bMin;
     if (sortOrder === "high-to-low") return bMin - aMin;
-    return 0; // default
+    return 0;
   });
 
   if (isLoading) {
-    return <div className="text-center mt-10 text-xl">Loading properties...</div>;
+    return (
+      <div className="text-center mt-10 text-xl text-primary">
+        Loading properties...
+      </div>
+    );
   }
 
   return (
-    <div className="p-4 lg:p-8 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center text-primary">
+    <div className="bg-base-200 min-h-screen p-4 lg:p-10 max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">
         All Verified Properties
       </h2>
 
-      {/* Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-        {/* Search Input */}
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+        {/* Search */}
         <input
           type="text"
           placeholder="Search by location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-full sm:max-w-xs"
+          className="input input-bordered w-full sm:max-w-xs bg-base-100 text-base-content"
         />
 
-        {/* Sort Dropdown */}
+        {/* Sort */}
         <select
-          className="select select-bordered w-full sm:w-fit"
+          className="select select-bordered w-full sm:w-fit bg-base-100 text-base-content"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
@@ -65,15 +67,17 @@ const AllProperties = () => {
         </select>
       </div>
 
-      {/* Property Cards */}
+      {/* Property Grid */}
       {sortedProperties.length === 0 ? (
-        <p className="text-center text-gray-500">No properties found.</p>
+        <p className="text-center text-base-content/70">
+          No properties found.
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedProperties.map((property) => (
             <div
               key={property._id}
-              className="card bg-base-100 shadow-md hover:shadow-xl transition duration-300"
+              className="card bg-base-100 text-base-content border border-base-300 shadow-md hover:shadow-xl transition duration-300"
             >
               <figure>
                 <img
@@ -83,15 +87,17 @@ const AllProperties = () => {
                 />
               </figure>
 
-              <div className="card-body">
-                <h2 className="card-title text-lg">{property.title}</h2>
+              <div className="card-body p-4">
+                <h2 className="card-title text-lg font-semibold text-primary">
+                  {property.title}
+                </h2>
 
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-base-content/80">
                   <strong>Location:</strong> {property.location}
                 </p>
 
                 <div className="flex items-center gap-2 mt-2">
-                  <strong className="text-sm">Agent:</strong>
+                  <strong className="text-sm text-base-content/80">Agent:</strong>
                   <img
                     src={property.agentImage || profilePlaceholder}
                     alt="Agent"
@@ -102,15 +108,17 @@ const AllProperties = () => {
 
                 <p className="text-sm mt-2">
                   <strong>Status:</strong>{" "}
-                  <span className="badge badge-success">Verified</span>
+                  <span className="badge badge-success badge-outline">
+                    Verified
+                  </span>
                 </p>
 
-                <p className="text-sm mt-1">
+                <p className="text-sm mt-1 text-base-content/80">
                   <strong>Price Range:</strong> ${property.priceMin} - ${property.priceMax}
                 </p>
 
                 <Link to={`/property/${property._id}`} className="mt-4 block">
-                  <button className="btn btn-sm btn-outline btn-primary w-full">
+                  <button className="btn btn-sm btn-primary w-full">
                     View Details
                   </button>
                 </Link>

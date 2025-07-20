@@ -1,6 +1,42 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: realestate --default;
+}
 
 .active{
     background-color: rgba(0, 0, 255, 0.719);
 }
+
+@plugin "daisyui/theme" {
+  name: "realestate";
+  default: true;
+
+  /* Primary - Olive/Lime for CTA */
+  --color-primary: #B6D63B;
+  --color-primary-content: #1A1A1A;
+
+  /* Secondary - Deep Slate/Charcoal */
+  --color-secondary: #1E2D2F;
+  --color-secondary-content: #FFFFFF;
+
+  /* Accent - Emerald for highlights */
+  --color-accent: #14B8A6;
+  --color-accent-content: #FFFFFF;
+
+  /* Neutral - Mid gray background */
+  --color-neutral: #2C2C2C;
+  --color-neutral-content: #E5E7EB;
+
+  /* Base Colors */
+  --color-base-100: #1B1B1B;   /* Card Background */
+  --color-base-200: #2A2A2A;   /* Lighter than card */
+  --color-base-300: #3B3B3B;   /* Border */
+  --color-base-content: #E5E5E5; /* Main text */
+
+  /* Status Colors */
+  --color-info: #3B82F6;
+  --color-success: #22C55E;
+  --color-warning: #FBBF24;
+  --color-error: #EF4444;
+}
+

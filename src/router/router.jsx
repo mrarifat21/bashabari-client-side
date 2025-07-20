@@ -24,6 +24,7 @@ import AgentRoute from "./AgentRoute";
 import UserRoute from "./UserRoute";
 import Profile from "../Pages/Profile/Profile";
 import AdvertiseProperty from "../Pages/Dashboard/AdminDashboard/AdvertiseProperty";
+import RequestedProperties from "../Pages/Dashboard/AgentDashboard/RequestedProperties";
 
 export const router = createBrowserRouter([
   {
@@ -98,6 +99,14 @@ export const router = createBrowserRouter([
         element: (
           <AgentRoute>
             <UpdateProperty />
+          </AgentRoute>
+        ),
+      },
+      {
+        path: "requestedProperties",
+        element: (
+          <AgentRoute>
+            <RequestedProperties />
           </AgentRoute>
         ),
       },

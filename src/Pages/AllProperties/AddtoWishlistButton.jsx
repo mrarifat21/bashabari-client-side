@@ -8,7 +8,6 @@ const AddToWishlistButton = ({ property }) => {
   const axiosSecure = useAxios();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-
   // ✅ Check if property already in wishlist
   useEffect(() => {
     const checkWishlist = async () => {
@@ -43,6 +42,7 @@ const AddToWishlistButton = ({ property }) => {
       priceMax: property.priceMax,
       agentName: property.agentName,
       agentImage: property.agentImage,
+      agentEmail:property.agentEmail,
       propertyLocation: property.location,
       propertyStatus: property.status,
       addedAt: new Date(),
