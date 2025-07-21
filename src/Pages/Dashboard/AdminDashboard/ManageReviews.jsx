@@ -23,7 +23,13 @@ const ManageReviews = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["allReviews"]);
-      Swal.fire("Deleted!", "Review has been removed.", "success");
+       Swal.fire({
+              title: "Deleted!",
+              text: "User has been removed.",
+              icon: "success",
+              timer: 1000,
+              showConfirmButton: false,
+            });
     },
     onError: () => {
       Swal.fire("Error", "Failed to delete review", "error");

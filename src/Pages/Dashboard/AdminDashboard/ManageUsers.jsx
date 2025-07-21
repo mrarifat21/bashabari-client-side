@@ -44,7 +44,13 @@ const ManageUsers = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["allUsers"]);
-      Swal.fire("Deleted!", "User has been removed.", "success");
+      Swal.fire({
+        title: "Deleted!",
+        text: "User has been removed.",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: false,
+      });
     },
   });
 
@@ -92,7 +98,9 @@ const ManageUsers = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-base-300">
-      <h2 className="text-3xl font-bold mb-6 text-primary text-center">Manage Users</h2>
+      <h2 className="text-3xl font-bold mb-6 text-primary text-center">
+        Manage Users
+      </h2>
 
       <table className="table w-full table-zebra">
         <thead className="bg-primary text-primary-content">
@@ -122,7 +130,9 @@ const ManageUsers = () => {
               </td>
               <td className="text-center ">
                 {user.status === "fraud" ? (
-                  <span className="badge rounded-xs p-2 badge-error">Fraud</span>
+                  <span className="badge rounded-xs p-2 badge-error">
+                    Fraud
+                  </span>
                 ) : (
                   <span className="capitalize">{user.role}</span>
                 )}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router"; 
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import profilePlaceholder from "./../../assets/profilePlaceholder.jpg";
@@ -21,40 +21,36 @@ const PropertyDetails = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center mt-10 text-xl text-secondary-content">
-        Loading property...
+      <div className="text-center mt-10 text-xl text-base-content bg-base-100 py-20">
+        <span className="loading loading-spinner text-primary"></span>
       </div>
     );
   }
 
   return (
-    <main className="max-w-5xl mx-auto p-6 space-y-6 bg-base-200 rounded-xl shadow-lg mt-6">
-      {/* Title */}
+    <main className="max-w-5xl mx-auto p-6 space-y-6 bg-base-200 rounded-xl shadow-lg mt-6 text-base-content">
       <h2 className="text-4xl font-extrabold text-primary">{property.title}</h2>
 
-      {/* Image */}
       <img
         src={property.image}
         alt={property.title}
         className="w-full h-72 object-cover rounded-lg shadow-md"
       />
 
-      {/* Description */}
       <p className="text-base-content text-lg leading-relaxed">
         {property.description}
       </p>
 
-      {/* Info Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-base-100 p-6 rounded-lg shadow-inner">
         <p className="text-base-content">
-          <strong className="">📍 Location:</strong>{" "}
+          <strong className="text-primary">📍 Location:</strong>{" "}
           {property.location}
         </p>
         <p className="text-base-content">
-          <strong className="">💰 Price Range:</strong> ${property.priceMin} - ${property.priceMax}
+          <strong className="text-primary">💰 Price Range:</strong> ${property.priceMin} - ${property.priceMax}
         </p>
         <div className="flex items-center gap-3 col-span-2 mt-2">
-          <strong className="">👤 Agent:</strong>
+          <strong className="text-primary">👤 Agent:</strong>
           <img
             src={property.agentImage || profilePlaceholder}
             alt="Agent"
@@ -66,12 +62,10 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      {/* Wishlist Button */}
       <div className="mt-4">
         <AddToWishlistButton property={property} />
       </div>
 
-      {/* Reviews Section */}
       <section className="bg-base-100 p-6 rounded-lg shadow-inner space-y-4">
         <h3 className="text-2xl font-semibold text-primary">Reviews</h3>
         <PropertyReviews propertyId={property._id} />

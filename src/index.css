@@ -3,40 +3,41 @@
   themes: realestate --default;
 }
 
-.active{
-    background-color: rgba(0, 0, 255, 0.719);
+.active {
+  background-color: var(--color-base-300);
+  color: var(--color-primary);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
 }
-
 @plugin "daisyui/theme" {
   name: "realestate";
   default: true;
 
-  /* Primary - Olive/Lime for CTA */
-  --color-primary: #B6D63B;
-  --color-primary-content: #1A1A1A;
+  /* Primary - Muted Gold/Bronze (Premium, trustworthy, inviting CTA) */
+  --color-primary: #b8860b; /* Darker, richer gold */
+  --color-primary-content: #ffffff; /* White text for strong contrast */
 
-  /* Secondary - Deep Slate/Charcoal */
-  --color-secondary: #1E2D2F;
-  --color-secondary-content: #FFFFFF;
+  /* Secondary - Deep Charcoal/Slate (Sophisticated, stable, strong foundation) */
+  --color-secondary: #2c3e50; /* A very dark, slightly blue-tinted gray */
+  --color-secondary-content: #e0e0e0; /* Light gray text for readability */
 
-  /* Accent - Emerald for highlights */
-  --color-accent: #14B8A6;
-  --color-accent-content: #FFFFFF;
+  /* Accent - Rich Emerald Green (Highlights, adds a touch of vibrancy and nature) */
+  --color-accent: #27ae60; /* Deep, earthy green */
+  --color-accent-content: #ffffff; /* White text for readability */
 
-  /* Neutral - Mid gray background */
-  --color-neutral: #2C2C2C;
-  --color-neutral-content: #E5E7EB;
+  /* Neutral - Dark Gray (For less prominent elements, subtle distinction) */
+  --color-neutral: #34495e; /* Slightly lighter than secondary, good for subtle separators or backgrounds */
+  --color-neutral-content: #efefef; /* Very light gray for content */
 
-  /* Base Colors */
-  --color-base-100: #1B1B1B;   /* Card Background */
-  --color-base-200: #2A2A2A;   /* Lighter than card */
-  --color-base-300: #3B3B3B;   /* Border */
-  --color-base-content: #E5E5E5; /* Main text */
+  /* Base Colors - Deep, Warm Backgrounds for a Luxurious Feel */
+  --color-base-100: #1c1c1c; /* Darkest background, almost black but with a hint of warmth */
+  --color-base-200: #262626; /* Slightly lighter, for cards or panels */
+  --color-base-300: #333333; /* Even lighter, for borders, subtle shadows, or hover states */
+  --color-base-content: #eaeaea; /* Main text color, a soft off-white for excellent readability on dark backgrounds */
 
-  /* Status Colors */
-  --color-info: #3B82F6;
-  --color-success: #22C55E;
-  --color-warning: #FBBF24;
-  --color-error: #EF4444;
-}
-
+  /* Status Colors (standard, ensuring good visibility on dark backgrounds) */
+  --color-info: #3498db;   
+  --color-success: #2ecc71; 
+  --color-warning: #f39c12;  
+   --color-error: #e74c3c;   }

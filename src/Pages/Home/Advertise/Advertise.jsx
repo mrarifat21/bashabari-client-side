@@ -20,20 +20,20 @@ const Advertise = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center py-20">
+      <div className="flex justify-center items-center py-20 bg-base-100">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
 
   if (error)
     return (
-      <div className="text-center text-red-500 font-semibold py-10">
+      <div className="text-center text-error font-semibold py-10 bg-base-100 text-base-content">
         Failed to load advertised properties.
       </div>
     );
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-base-100 text-base-content">
       <h2 className="text-3xl font-bold text-center text-primary mb-10">
         🌟 Featured Properties
       </h2>
@@ -45,7 +45,7 @@ const Advertise = () => {
           {advertisedProperties.map((property) => (
             <div
               key={property._id}
-              className="card bg-base-100 shadow-lg hover:shadow-xl border border-base-300 transition-all duration-300"
+              className="card bg-base-200 shadow-lg hover:shadow-xl border border-base-300 transition-all duration-300"
             >
               <figure>
                 <img
@@ -55,7 +55,7 @@ const Advertise = () => {
                 />
               </figure>
               <div className="card-body text-base-content">
-                <h3 className="card-title text-lg font-semibold">
+                <h3 className="card-title text-lg font-semibold text-base-content">
                   {property.title}
                 </h3>
                 <p className="text-sm opacity-90">
@@ -73,7 +73,7 @@ const Advertise = () => {
                 <div className="mt-4">
                   <Link
                     to={`/property/${property._id}`}
-                    className="btn btn-primary btn-sm w-full"
+                    className="btn btn-primary btn-sm w-full text-base-100"
                   >
                     View Details
                   </Link>

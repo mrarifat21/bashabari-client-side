@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxios from "../../../hooks/useAxios";
@@ -9,6 +9,7 @@ const PropertyBought = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   // Fetch user's bought/offered properties
   const { data: offers = [], isLoading } = useQuery({
@@ -47,7 +48,8 @@ const PropertyBought = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        payMutation.mutate(id);
+        // payMutation.mutate(id);
+        navigate( `/dashboard/payment/${id}`)
       }
     });
   };

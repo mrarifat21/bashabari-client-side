@@ -9,7 +9,8 @@ const MakeOffer = () => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
-console.log(property);
+  console.log(property);
+
   const onSubmit = async (data) => {
     const offerAmount = parseFloat(data.offerAmount);
     if (offerAmount < property.priceMin || offerAmount > property.priceMax) {
@@ -20,7 +21,7 @@ console.log(property);
       );
       return;
     }
-    
+
     const offer = {
       propertyId: property._id,
       propertyImage: property.propertyImage,
@@ -46,96 +47,95 @@ console.log(property);
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Make an Offer</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="w-full max-w-2xl mx-auto p-6 mt-8 bg-base-200 rounded-xl shadow-md border border-base-300">
+      <h2 className="text-3xl font-bold text-center mb-6 text-base-content">Make an Offer</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
-          <label htmlFor="propertyTitle" className="label">
+          <label htmlFor="propertyTitle" className="label text-base-content">
             Property Title
           </label>
           <input
             id="propertyTitle"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             value={property.propertyTitle}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="propertyLocation" className="label">
+          <label htmlFor="propertyLocation" className="label text-base-content">
             Location
           </label>
           <input
             id="propertyLocation"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             value={property.propertyLocation}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="agentName" className="label">
+          <label htmlFor="agentName" className="label text-base-content">
             Agent Name
           </label>
           <input
             id="agentName"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             value={property.agentName}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="buyerName" className="label">
+          <label htmlFor="buyerName" className="label text-base-content">
             Your Name
           </label>
           <input
             id="buyerName"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             value={user.displayName}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="buyerEmail" className="label">
+          <label htmlFor="buyerEmail" className="label text-base-content">
             Your Email
           </label>
           <input
             id="buyerEmail"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             value={user.email}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="offerAmount" className="label">
+          <label htmlFor="offerAmount" className="label text-base-content">
             Offer Amount
           </label>
           <input
             id="offerAmount"
             type="number"
             placeholder={`Enter offer ($${property.priceMin} - $${property.priceMax})`}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             {...register("offerAmount", { required: true })}
           />
         </div>
 
         <div>
-          <label htmlFor="buyingDate" className="label">
+          <label htmlFor="buyingDate" className="label text-base-content">
             Preferred Buying Date
           </label>
           <input
             id="buyingDate"
             type="date"
-            placeholder="Select date"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-base-100 text-base-content"
             {...register("buyingDate", { required: true })}
           />
         </div>
 
-        <button type="submit" className="btn btn-primary w-full mt-4">
+        <button type="submit" className="btn btn-primary w-full mt-6 text-base-100">
           Send Offer
         </button>
       </form>

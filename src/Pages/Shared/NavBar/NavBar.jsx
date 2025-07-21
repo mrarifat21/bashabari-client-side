@@ -4,26 +4,50 @@ import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
+
   const handleLogout = () => {
     logOut()
       .then(() => console.log("logout successfully"))
       .catch((error) => console.log(error));
   };
+
   const navItems = (
     <>
       <li>
-        <NavLink to="/"> Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/allProperties"> All properties</NavLink>
+        <NavLink
+          to="/allProperties"
+          className={({ isActive }) =>
+            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+          }
+        >
+          All properties
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard"> Dashboard</NavLink>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+          }
+        >
+          Dashboard
+        </NavLink>
       </li>
     </>
   );
+
   return (
-    <div className=" bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm">
       <div className="w-11/12 mx-auto navbar">
         <div className="navbar-start">
           <div className="dropdown">
@@ -35,13 +59,12 @@ const NavBar = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
@@ -51,11 +74,16 @@ const NavBar = () => {
               {navItems}
             </ul>
           </div>
-          <p ><Link  to ='/' className="text-2xl text-primary font-extrabold">BashaBari</Link></p>
+          <p>
+            <Link to="/" className="text-2xl text-primary font-extrabold">
+              BashaBari
+            </Link>
+          </p>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
+
         <div className="navbar-end space-x-3">
           {user ? (
             <button onClick={handleLogout} className="btn btn-primary">

@@ -9,16 +9,15 @@ const Profile = () => {
 
   if (isLoading || !user) {
     return (
-      <div className="text-center py-20 text-secondary text-lg font-semibold">
-        Loading profile...
+      <div className="text-center py-20 text-base-content bg-base-100 text-lg font-semibold">
+        <span className="loading loading-spinner text-primary"></span>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 sm:p-8">
+    <div className="max-w-4xl mx-auto p-6 sm:p-8 bg-base-100 rounded-xl shadow-lg mt-6">
       <div className="bg-base-200 border border-base-300 rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-8">
-        {/* Profile image */}
         <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary flex-shrink-0">
           <img
             src={user?.photoURL || "https://i.ibb.co/vq1kZ2J/default-user.png"}
@@ -27,35 +26,33 @@ const Profile = () => {
           />
         </div>
 
-        {/* User Info */}
         <div className="flex-1 text-base-content">
-          <h2 className="text-3xl font-extrabold mb-1">{user?.displayName}</h2>
-          <p className="text-primary mb-3 break-words">{user?.email}</p>
+          <h2 className="text-3xl font-extrabold mb-1 text-primary">{user?.displayName}</h2>
+          <p className="text-base-content mb-3 break-words">{user?.email}</p>
 
           {role === "admin" && (
-            <p className="inline-flex items-center gap-2 text-primary font-semibold text-lg">
+            <p className="inline-flex items-center gap-2 text-accent font-semibold text-lg">
               <FaUserShield /> Admin
             </p>
           )}
 
           {role === "agent" && (
-            <p className="inline-flex items-center gap-2 text-primary font-semibold text-lg">
+            <p className="inline-flex items-center gap-2 text-accent font-semibold text-lg">
               <FaUserTie /> Agent
             </p>
           )}
         </div>
       </div>
 
-      {/* Additional account info */}
-      <div className="mt-8 bg-base-300 p-6 rounded-2xl shadow-md text-base-content max-w-md mx-auto sm:mx-0">
+      <div className="mt-8 bg-base-200 p-6 rounded-2xl shadow-md text-base-content max-w-md mx-auto sm:mx-0">
         <h3 className="text-xl font-bold mb-4 text-primary">Account Details</h3>
         <ul className="text-sm space-y-3">
           <li>
-            <span className="font-semibold">Email:</span> {user.email}
+            <span className="font-semibold text-primary">Email:</span> {user.email}
           </li>
 
           <li>
-            <span className="font-semibold">Join Date:</span>{" "}
+            <span className="font-semibold text-primary">Join Date:</span>{" "}
             {user?.metadata?.creationTime
               ? new Date(user.metadata.creationTime).toLocaleDateString()
               : "N/A"}

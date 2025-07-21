@@ -24,7 +24,6 @@ const Register = () => {
 
     createUserWithEmail(email, password)
       .then(async (result) => {
-        // console.log(result.user);
         const userInfo = {
           name,
           email,
@@ -37,7 +36,6 @@ const Register = () => {
         const userRes = await axiosInstance.post("/users", userInfo);
         console.log(userRes.data);
 
-        //  update user profile in firebase
         const userProfile = {
           displayName: name,
           photoURL: profilePic,
@@ -55,6 +53,8 @@ const Register = () => {
           icon: "success",
           title: "Registered Successfully!",
           text: "Welcome to Bashabari",
+          background: "#1C1C1C",
+          color: "#EAEAEA",
         });
         navigate("/");
       })
@@ -63,6 +63,8 @@ const Register = () => {
           icon: "error",
           title: "Registration Failed",
           text: error.message,
+          background: "#1C1C1C",
+          color: "#EAEAEA",
         });
       });
   };
@@ -85,49 +87,47 @@ const Register = () => {
         icon: "error",
         title: "Image Upload Failed",
         text: "Please try again.",
+        background: "#1C1C1C",
+        color: "#EAEAEA",
       });
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
-      <div className="card w-full max-w-sm bg-base-100 shadow-lg">
-        <div className="card-body">
-          <h2 className="text-3xl font-bold text-center text-primary">
+      <div className="card w-full max-w-md bg-base-100 shadow-xl border border-base-300 rounded-lg">
+        <div className="card-body px-8 py-10">
+          <h2 className="text-4xl font-extrabold text-center text-primary mb-8">
             Register
           </h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Name */}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <input
               type="text"
               {...register("name", { required: true })}
               placeholder="Full Name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.name && (
-              <p className="text-error text-sm">Name is required</p>
+              <p className="text-error text-sm mt-1">Name is required</p>
             )}
 
-            {/* Upload Image */}
             <input
               type="file"
               onChange={handleImageUpload}
-              className="file-input file-input-bordered w-full"
+              className="file-input file-input-bordered w-full bg-base-200 text-base-content"
               accept="image/*"
             />
 
-            {/* Email */}
             <input
               type="email"
               {...register("email", { required: true })}
               placeholder="Email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.email && (
-              <p className="text-error text-sm">Email is required</p>
+              <p className="text-error text-sm mt-1">Email is required</p>
             )}
 
-            {/* Password */}
             <input
               type="password"
               {...register("password", {
@@ -143,24 +143,29 @@ const Register = () => {
                 },
               })}
               placeholder="Password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.password && (
-              <p className="text-error text-sm">{errors.password.message}</p>
+              <p className="text-error text-sm mt-1">
+                {errors.password.message}
+              </p>
             )}
 
-            <button type="submit" className="btn btn-primary w-full">
+            <button
+              type="submit"
+              className="btn btn-primary w-full mt-4 text-base-100 font-semibold"
+            >
               Register
             </button>
 
-            <p className="text-sm text-center">
+            <p className="text-sm text-center text-base-content mt-6">
               Already have an account?{" "}
-              <Link to="/login" className="link link-primary">
+              <Link to="/login" className="link link-primary font-medium">
                 Login here
               </Link>
             </p>
 
-            <div className="divider">OR</div>
+            <div className="divider text-base-content">OR</div>
             <SocialLogin />
           </form>
         </div>

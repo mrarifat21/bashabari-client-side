@@ -52,7 +52,7 @@ const LatestReviews = () => {
                   className="w-14 h-14 rounded-full object-cover ring ring-primary"
                 />
                 <div>
-                  <h3 className="text-lg font-semibold text-secondary">
+                  <h3 className="text-lg font-semibold text-white">
                     {review.userName}
                   </h3>
                   {/* ⭐ Stars */}

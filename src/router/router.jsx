@@ -26,6 +26,7 @@ import Profile from "../Pages/Profile/Profile";
 import AdvertiseProperty from "../Pages/Dashboard/AdminDashboard/AdvertiseProperty";
 import RequestedProperties from "../Pages/Dashboard/AgentDashboard/RequestedProperties";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Payment from "../Pages/Dashboard/UserDashboard/Paymnet/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -180,6 +181,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/wishlist/${params.id}`),
       },
+      {
+        path: 'payment/:propertyID',
+        element: <UserRoute><Payment></Payment></UserRoute>
+      }
     
     ],
   },

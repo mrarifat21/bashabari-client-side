@@ -108,7 +108,7 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs bg-black text-white border border-black px-3 hover:bg-gray-800"
+                            className="btn btn-xs bg-black text-green-500 border border-black px-3 hover:bg-gray-800"
                           >
                             Accept
                           </button>
@@ -120,7 +120,7 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs bg-black text-white border border-black px-3 hover:bg-gray-800"
+                            className="btn btn-xs bg-black text-red-500 border border-black px-3 hover:bg-gray-800"
                           >
                             Reject
                           </button>

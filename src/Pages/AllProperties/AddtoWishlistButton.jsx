@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import useUserRole from "../../hooks/useUserRole";
 
 const AddToWishlistButton = ({ property }) => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
+  const { role, roleLoading } = useUserRole();
   const [isAdding, setIsAdding] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+
   // ✅ Check if property already in wishlist
   useEffect(() => {
     const checkWishlist = async () => {
-      if (user && property?._id) {
+      if (user && property?._id && role === 'user') {
         try {
           const res = await axiosSecure.get(
             `/wishlist/check?email=${user.email}&propertyId=${property._id}`
@@ -24,7 +27,7 @@ const AddToWishlistButton = ({ property }) => {
     };
 
     checkWishlist();
-  }, [user, property?._id, axiosSecure]);
+  }, [user, property?._id, axiosSecure, role]);
 
   // ✅ Handle Add to Wishlist
   const handleAddToWishlist = async () => {
@@ -32,17 +35,36 @@ const AddToWishlistButton = ({ property }) => {
       return Swal.fire("Unauthorized", "Please log in to add to wishlist", "warning");
     }
 
+    if (roleLoading) {
+      return Swal.fire("Please wait", "Checking your role...", "info");
+    }
+
+    if (role !== 'user') {
+      return Swal.fire({
+        icon: "error",
+        title: "Access Denied",
+        text: "Only users can add to wishlist.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    }
+
+    if (isAdded) {
+      return Swal.fire("Already Added", "This property is already in your wishlist.", "info");
+    }
+
     setIsAdding(true);
+
     const wishlistData = {
       userEmail: user.email,
-      propertyId: String(property._id), // ensure string
+      propertyId: String(property._id),
       propertyTitle: property.title,
       propertyImage: property.image,
       priceMin: property.priceMin,
       priceMax: property.priceMax,
       agentName: property.agentName,
       agentImage: property.agentImage,
-      agentEmail:property.agentEmail,
+      agentEmail: property.agentEmail,
       propertyLocation: property.location,
       propertyStatus: property.status,
       addedAt: new Date(),
@@ -77,10 +99,15 @@ const AddToWishlistButton = ({ property }) => {
   return (
     <button
       onClick={handleAddToWishlist}
-      disabled={isAdding || isAdded}
-      className="btn btn-primary mt-4 w-full sm:w-1/2 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="btn btn-primary mt-4 w-full sm:w-1/2"
     >
-      {isAdded ? "Added ❤️" : isAdding ? "Adding..." : "Add to Wishlist ❤️"}
+      {roleLoading
+        ? "Checking role..."
+        : isAdded
+        ? "Added ❤️"
+        : isAdding
+        ? "Adding..."
+        : "Add to Wishlist ❤️"}
     </button>
   );
 };

@@ -3,16 +3,24 @@ import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useUserRole from "../../hooks/useUserRole";
 
 const AddReviewModal = ({ propertyId, propertyTitle, agentName }) => {
   const { user } = useAuth();
   const axiosSecure = useAxios();
   const { register, handleSubmit, reset } = useForm();
+  const { role, roleLoading } = useUserRole(); // 🔑 role validation hook
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     if (!user) {
       return Swal.fire("Unauthorized", "Please log in to leave a review.", "warning");
+    }
+
+    if (roleLoading) return; // Wait until role is loaded
+
+    if (role !== "user") {
+      return Swal.fire("Permission Denied", "Only users can leave reviews.", "error");
     }
 
     const reviewData = {
@@ -48,7 +56,15 @@ const AddReviewModal = ({ propertyId, propertyTitle, agentName }) => {
     <>
       <button
         className="btn btn-outline btn-primary mt-6"
-        onClick={() => document.getElementById("add_review_modal").showModal()}
+        onClick={() => {
+          if (!user) {
+            Swal.fire("Login Required", "Please log in to leave a review.", "info");
+          } else if (role !== "user") {
+            Swal.fire("Access Denied", "Only normal users can leave reviews.", "error");
+          } else {
+            document.getElementById("add_review_modal").showModal();
+          }
+        }}
       >
         Add a Review 📝
       </button>
