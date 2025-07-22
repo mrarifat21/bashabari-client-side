@@ -111,13 +111,13 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mySoldProperties">
-                  <FaDollarSign /> My Sold Properties
+                <NavLink to="/dashboard/requestedProperties">
+                  <FaClock /> Requested Properties
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/requestedProperties">
-                  <FaClock /> Requested Properties
+                <NavLink to="/dashboard/mySoldProperties">
+                  <FaDollarSign /> My Sold Properties
                 </NavLink>
               </li>
             </>

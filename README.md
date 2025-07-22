@@ -1,12 +1,66 @@
-# React + Vite
+# 🏠 Bashabari - Real Estate Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Bashabari** is a full-featured MERN stack real estate platform that connects users, agents, and administrators to facilitate seamless property browsing, listing, and buying. Users can wishlist, review, and make offers on properties. Agents can list properties and manage offers, while admins oversee the entire platform's operations including property verification, user roles, and review moderation.
 
-Currently, two official plugins are available:
+🔐 **Three User Roles:**
+- **User:** Wishlist, review, buy property, and manage profile.
+- **Agent:** Add/manage properties, view offers, track sold properties.
+- **Admin:** Manage users, properties, reviews, advertisements, and fraud detection.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌐 Live Website
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔗 [Visit Bashabari Live Site](https://bashabari-67faf.web.app/)
+
+---
+
+## 🔐 Login Credentials
+
+> You can use these credentials for testing:
+
+### 🔑 Admin
+- **Email:** `admin@bashabari.com`
+- **Password:** `Admin123@`
+
+### 🧑‍💼 Agent
+- **Email:** `agent@bashabari.com`
+- **Password:** `Agent123@`
+
+---
+
+## 🚀 Features
+
+1. 🔐 **Role-Based Dashboards** for Admin, Agent, and User
+2. 🏠 **Dynamic Property Listing & Detail Pages** with wishlist and review features
+3. 🧾 **Secure Offer & Stripe Payment** system for buying properties
+4. 🧑‍💼 **Agent Property Management** with update & delete functionality
+5. ✅ **Admin Property Verification** and fraud detection system
+6. 🔍 **Search, Sort, and Filter** options on the All Properties page
+7. 📈 **Selling Statistics** chart for agents using Recharts
+8. 📸 **Advertisement Section** powered by admin-selected properties
+9. 🧪 **JWT Auth with Axios Interceptor** and Token Persistence
+10. 🎨 **Responsive UI for Mobile, Tablet, and Desktop** with DaisyUI & Tailwind CSS
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React.js
+- React Router v7
+- Tailwind CSS + DaisyUI
+- Firebase Auth
+- Stripe.js
+- React Hook Form
+- SweetAlert2
+- TanStack Query (v5)
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (with Atlas)
+- JWT Authentication
+
+---
+
