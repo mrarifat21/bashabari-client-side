@@ -96,7 +96,7 @@ const ManageReviews = () => {
 
             <button
               onClick={() => handleDelete(review._id)}
-              className="btn btn-error btn-sm flex items-center gap-2 self-start hover:bg-error/90 transition-colors duration-200"
+              className="btn btn-error btn-sm flex items-center gap-2 self-start hover:bg-error/90 transition-colors duration-200 border-0"
               aria-label={`Delete review by ${review.userName}`}
             >
               <FaTrashAlt /> Delete

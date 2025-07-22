@@ -236,7 +236,7 @@ const AddProperty = () => {
           </div>
         </div>
 
-        <button className="btn btn-primary w-full mt-4" disabled={uploading}>
+        <button className="btn btn-primary w-full mt-4 border-0" disabled={uploading}>
           Submit Property
         </button>
       </form>

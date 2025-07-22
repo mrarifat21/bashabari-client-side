@@ -32,32 +32,29 @@ const AllProperties = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center mt-10 text-xl text-primary">
-        Loading properties...
+      <div className="text-center mt-10 text-xl text-base-content bg-base-100 py-20">
+        <span className="loading loading-spinner text-primary"></span>
       </div>
     );
   }
 
   return (
-    <div className="bg-base-200 min-h-screen p-4 lg:p-10 max-w-7xl mx-auto">
+    <div className="bg-base-100 min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-base-content">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">
         All Verified Properties
       </h2>
 
-      {/* Filters */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-        {/* Search */}
         <input
           type="text"
           placeholder="Search by location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-full sm:max-w-xs bg-base-100 text-base-content"
+          className="input input-bordered w-full sm:max-w-xs bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
         />
 
-        {/* Sort */}
         <select
-          className="select select-bordered w-full sm:w-fit bg-base-100 text-base-content"
+          className="select select-bordered w-full sm:w-fit bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
@@ -67,7 +64,6 @@ const AllProperties = () => {
         </select>
       </div>
 
-      {/* Property Grid */}
       {sortedProperties.length === 0 ? (
         <p className="text-center text-base-content/70">
           No properties found.
@@ -77,7 +73,7 @@ const AllProperties = () => {
           {sortedProperties.map((property) => (
             <div
               key={property._id}
-              className="card bg-base-100 text-base-content border border-base-300 shadow-md hover:shadow-xl transition duration-300"
+              className="card bg-base-200 text-base-content border border-base-300 shadow-md hover:shadow-xl transition duration-300"
             >
               <figure>
                 <img
@@ -101,7 +97,7 @@ const AllProperties = () => {
                   <img
                     src={property.agentImage || profilePlaceholder}
                     alt="Agent"
-                    className="w-8 h-8 rounded-full object-cover border"
+                    className="w-8 h-8 rounded-full object-cover border border-primary"
                   />
                   <span className="text-sm">{property.agentName}</span>
                 </div>
@@ -118,7 +114,7 @@ const AllProperties = () => {
                 </p>
 
                 <Link to={`/property/${property._id}`} className="mt-4 block">
-                  <button className="btn btn-sm btn-primary w-full">
+                  <button className="btn btn-sm btn-primary w-full text-base-100">
                     View Details
                   </button>
                 </Link>

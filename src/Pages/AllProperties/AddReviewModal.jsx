@@ -100,12 +100,12 @@ const AddReviewModal = ({ propertyId, propertyTitle, agentName }) => {
 
             {/* Actions */}
             <div className="modal-action">
-              <button type="submit" className="btn btn-primary" disabled={loading}>
+              <button type="submit" className="btn btn-primary border-0" disabled={loading}>
                 {loading ? "Submitting..." : "Submit Review"}
               </button>
               <button
                 type="button"
-                className="btn btn-ghost"
+                className="btn btn-ghost border-1 border-white"
                 onClick={() => document.getElementById("add_review_modal").close()}
               >
                 Cancel

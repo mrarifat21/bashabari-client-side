@@ -14,11 +14,13 @@ const MakeOffer = () => {
   const onSubmit = async (data) => {
     const offerAmount = parseFloat(data.offerAmount);
     if (offerAmount < property.priceMin || offerAmount > property.priceMax) {
-      Swal.fire(
-        "Invalid",
-        `Offer must be between $${property.priceMin} and $${property.priceMax}`,
-        "error"
-      );
+      Swal.fire({
+        title: "Invalid",
+        text: `Offer must be between $${property.priceMin} and $${property.priceMax}`,
+        icon: "error",
+        background: "#1C1C1C", 
+        color: "#EAEAEA", 
+      });
       return;
     }
 
@@ -41,14 +43,20 @@ const MakeOffer = () => {
 
     const res = await axiosSecure.post("/offers", offer);
     if (res.data.insertedId) {
-      Swal.fire("Success", "Your offer has been sent!", "success");
+      Swal.fire({
+        title: "Success",
+        text: "Your offer has been sent!",
+        icon: "success",
+        background: "#1C1C1C", // Base-100
+        color: "#EAEAEA", // Base-content
+      });
       reset();
     }
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 mt-8 bg-base-200 rounded-xl shadow-md border border-base-300">
-      <h2 className="text-3xl font-bold text-center mb-6 text-base-content">Make an Offer</h2>
+    <div className="w-full max-w-2xl mx-auto p-6 mt-8 bg-base-200 rounded-xl shadow-md border border-base-300 text-base-content">
+      <h2 className="text-3xl font-bold text-center mb-6 text-primary">Make an Offer</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
           <label htmlFor="propertyTitle" className="label text-base-content">
@@ -56,7 +64,7 @@ const MakeOffer = () => {
           </label>
           <input
             id="propertyTitle"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.propertyTitle}
             readOnly
           />
@@ -68,7 +76,7 @@ const MakeOffer = () => {
           </label>
           <input
             id="propertyLocation"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.propertyLocation}
             readOnly
           />
@@ -80,7 +88,7 @@ const MakeOffer = () => {
           </label>
           <input
             id="agentName"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.agentName}
             readOnly
           />
@@ -92,7 +100,7 @@ const MakeOffer = () => {
           </label>
           <input
             id="buyerName"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={user.displayName}
             readOnly
           />
@@ -104,7 +112,7 @@ const MakeOffer = () => {
           </label>
           <input
             id="buyerEmail"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={user.email}
             readOnly
           />
@@ -118,7 +126,7 @@ const MakeOffer = () => {
             id="offerAmount"
             type="number"
             placeholder={`Enter offer ($${property.priceMin} - $${property.priceMax})`}
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             {...register("offerAmount", { required: true })}
           />
         </div>
@@ -130,7 +138,7 @@ const MakeOffer = () => {
           <input
             id="buyingDate"
             type="date"
-            className="input input-bordered w-full bg-base-100 text-base-content"
+            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             {...register("buyingDate", { required: true })}
           />
         </div>

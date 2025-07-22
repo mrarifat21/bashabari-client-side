@@ -27,7 +27,7 @@ const Advertise = () => {
 
   if (error)
     return (
-      <div className="text-center text-error font-semibold py-10 bg-base-100 text-base-content">
+      <div className="text-center text-error font-semibold py-10 bg-base-100 ">
         Failed to load advertised properties.
       </div>
     );
@@ -35,7 +35,7 @@ const Advertise = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-base-100 text-base-content">
       <h2 className="text-3xl font-bold text-center text-primary mb-10">
-        🌟 Featured Properties
+         Featured Properties
       </h2>
 
       {advertisedProperties.length === 0 ? (

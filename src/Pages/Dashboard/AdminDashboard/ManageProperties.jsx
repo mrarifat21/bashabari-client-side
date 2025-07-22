@@ -132,7 +132,7 @@ const ManageProperties = () => {
                         onClick={() =>
                           handleStatusChange(property._id, "verified")
                         }
-                        className="btn btn-sm btn-success"
+                        className="btn btn-sm btn-success border-0"
                       >
                         Approve
                       </button>
@@ -140,7 +140,7 @@ const ManageProperties = () => {
                         onClick={() =>
                           handleStatusChange(property._id, "rejected")
                         }
-                        className="btn btn-sm btn-error"
+                        className="btn btn-sm btn-error border-0"
                       >
                         Reject
                       </button>

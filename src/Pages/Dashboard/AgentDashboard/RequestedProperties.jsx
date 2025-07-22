@@ -1,8 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAxios from "../../../hooks/useAxios";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const RequestedProperties = () => {
   const { user } = useAuth();
@@ -27,18 +26,33 @@ const RequestedProperties = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["agentOffers", user?.email]);
+      Swal.fire({
+        title: "Status Updated!",
+        icon: "success",
+        background: "#1C1C1C", // Base-100
+        color: "#EAEAEA", // Base-content
+      });
+    },
+    onError: () => {
+      Swal.fire({
+        title: "Error",
+        text: "Failed to update status.",
+        icon: "error",
+        background: "#1C1C1C", // Base-100
+        color: "#EAEAEA", // Base-content
+      });
     },
   });
 
   return (
-    <div className="w-full max-w-7xl mx-auto my-10 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary">
+    <div className="w-full max-w-7xl mx-auto my-10 px-4 sm:px-6 lg:px-8 bg-base-100 rounded-xl shadow-lg text-base-content">
+      <h2 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary pt-6">
         Requested Properties
       </h2>
       {isLoading ? (
-        <p className="text-center text-lg font-medium text-primary py-10">
-          Loading...
-        </p>
+        <div className="flex justify-center items-center py-10">
+          <span className="loading loading-spinner text-primary"></span>
+        </div>
       ) : (
         <div className="overflow-x-auto rounded-lg shadow-lg border border-base-300">
           <table className="table w-full table-zebra min-w-[700px]">
@@ -57,7 +71,7 @@ const RequestedProperties = () => {
             <tbody>
               {offers.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="text-center py-6 text-gray-500">
+                  <td colSpan="8" className="text-center py-6 text-base-content/70">
                     No offers found.
                   </td>
                 </tr>
@@ -91,7 +105,11 @@ const RequestedProperties = () => {
                     </td>
                     <td className="text-center">
                       <span
-                        className={`badge capitalize text-white bg-black border border-black px-3 py-1`}
+                        className={` capitalize px-3 py-1 
+                          ${offer.status === "pending" ? " text-warning font-bold" : ""}
+                          ${offer.status === "accepted" ? " text-success font-bold" : ""}
+                          ${offer.status === "rejected" ? "text-error font-bold" : ""}
+                        `}
                         title={offer.status}
                       >
                         {offer.status}
@@ -108,7 +126,7 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs bg-black text-green-500 border border-black px-3 hover:bg-gray-800"
+                            className="btn btn-xs btn-success text-success-content px-3 border-0"
                           >
                             Accept
                           </button>
@@ -120,13 +138,13 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs bg-black text-red-500 border border-black px-3 hover:bg-gray-800"
+                            className="btn btn-xs btn-error text-error-content px-3 border-0 "
                           >
                             Reject
                           </button>
                         </div>
                       ) : (
-                        <span className="text-gray-500">-</span>
+                        <span className="text-base-content/60">-</span>
                       )}
                     </td>
                   </tr>

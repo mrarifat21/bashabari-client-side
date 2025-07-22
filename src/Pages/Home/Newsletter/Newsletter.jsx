@@ -11,8 +11,8 @@ const Newsletter = () => {
       text: "You will receive updates from Bashabari.",
       icon: "success",
       confirmButtonText: "OK",
-      background: "#1C1C1C", // Set SweetAlert background to base-100 from the theme
-      color: "#EAEAEA", // Set SweetAlert text color to base-content from the theme
+      background: "#1C1C1C", 
+      color: "#EAEAEA", 
     });
     reset();
   };

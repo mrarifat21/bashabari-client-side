@@ -99,7 +99,7 @@ const AddToWishlistButton = ({ property }) => {
   return (
     <button
       onClick={handleAddToWishlist}
-      className="btn btn-primary mt-4 w-full sm:w-1/2"
+      className="btn btn-primary mt-4 w-full sm:w-1/2 border-0"
     >
       {roleLoading
         ? "Checking role..."
