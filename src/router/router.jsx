@@ -78,13 +78,8 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Profile
+        Component: Profile,
       },
-      // {
-      //   path: "profile",
-      //   element: <Profile></Profile>,
-      // },
-      // agent dashboard
       {
         path: "addProperty",
         element: (
@@ -187,14 +182,19 @@ export const router = createBrowserRouter([
           fetch(`https://bashabari-server.vercel.app/wishlist/${params.id}`),
       },
       {
-        path: 'payment/:propertyID',
-        element: <UserRoute><Payment></Payment></UserRoute>
-      }
-    
+        path: "payment/:propertyID",
+        element: (
+          <UserRoute>
+            <Payment></Payment>
+          </UserRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://bashabari-server.vercel.app/offer/${params.id}`),
+      },
     ],
   },
   {
-    path: '*',
-    Component: ErrorPage
-  }
+    path: "*",
+    Component: ErrorPage,
+  },
 ]);

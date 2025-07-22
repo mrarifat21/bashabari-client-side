@@ -58,7 +58,7 @@ console.log(offers);
 
   if (offers.length === 0)
     return <p className="text-center py-10 text-gray-500">You haven't made any offers yet.</p>;
-console.log(offers);
+// console.log(offers);
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-3xl font-bold mb-8">My Offered Properties</h2>
