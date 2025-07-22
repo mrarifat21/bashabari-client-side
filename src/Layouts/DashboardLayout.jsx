@@ -70,11 +70,7 @@ const DashboardLayout = () => {
               <FaUser /> My Profile
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/dashboard/Profile">
-              <FaUser /> My Profile
-            </NavLink>
-          </li> */}
+         
           {/* =============User========== */}
 
           {!roleLoading && role == "user" && (
@@ -116,7 +112,7 @@ const DashboardLayout = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mySoldProperties">
+                <NavLink to="/dashboard/soldProperties">
                   <FaDollarSign /> My Sold Properties
                 </NavLink>
               </li>

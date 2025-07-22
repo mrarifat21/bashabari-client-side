@@ -20,12 +20,12 @@
 > You can use these credentials for testing:
 
 ### 🔑 Admin
-- **Email:** `admin@bashabari.com`
-- **Password:** `Admin123@`
+- **Email:** `martina@admin.com`
+- **Password:** `A!aaaa`
 
 ### 🧑‍💼 Agent
-- **Email:** `agent@bashabari.com`
-- **Password:** `Agent123@`
+- **Email:** `mari@agent.com`
+- **Password:** `A!aaaa`
 
 ---
 

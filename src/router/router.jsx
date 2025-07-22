@@ -28,6 +28,7 @@ import RequestedProperties from "../Pages/Dashboard/AgentDashboard/RequestedProp
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Payment from "../Pages/Dashboard/UserDashboard/Paymnet/Payment";
 import AdminDashboard from "../Pages/Dashboard/DashboardHome/AdminDashboard";
+import SoldProperties from "../Pages/Dashboard/AgentDashboard/SoldProperties";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,14 @@ export const router = createBrowserRouter([
         element: (
           <AgentRoute>
             <RequestedProperties />
+          </AgentRoute>
+        ),
+      },
+      {
+        path: "soldProperties",
+        element: (
+          <AgentRoute>
+            <SoldProperties />
           </AgentRoute>
         ),
       },
