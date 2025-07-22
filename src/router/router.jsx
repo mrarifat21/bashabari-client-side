@@ -27,6 +27,7 @@ import AdvertiseProperty from "../Pages/Dashboard/AdminDashboard/AdvertiseProper
 import RequestedProperties from "../Pages/Dashboard/AgentDashboard/RequestedProperties";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Payment from "../Pages/Dashboard/UserDashboard/Paymnet/Payment";
+import AdminDashboard from "../Pages/Dashboard/DashboardHome/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -76,9 +77,13 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "profile",
-        element: <Profile></Profile>,
+        index: true,
+        Component: Profile
       },
+      // {
+      //   path: "profile",
+      //   element: <Profile></Profile>,
+      // },
       // agent dashboard
       {
         path: "addProperty",
@@ -179,7 +184,7 @@ export const router = createBrowserRouter([
           </UserRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/wishlist/${params.id}`),
+          fetch(`https://bashabari-server.vercel.app/wishlist/${params.id}`),
       },
       {
         path: 'payment/:propertyID',

@@ -67,14 +67,14 @@ const DashboardLayout = () => {
           {/* Common */}
           <li>
             <NavLink to="/dashboard">
-              <FaHome /> Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/Profile">
               <FaUser /> My Profile
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink to="/dashboard/Profile">
+              <FaUser /> My Profile
+            </NavLink>
+          </li> */}
           {/* =============User========== */}
 
           {!roleLoading && role == "user" && (
@@ -149,6 +149,13 @@ const DashboardLayout = () => {
               </li>
             </>
           )}
+
+          <li>
+            <NavLink to="/">
+              <FaHome />
+              Back to home
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>

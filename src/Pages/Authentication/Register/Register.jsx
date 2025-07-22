@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
@@ -9,6 +9,8 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/'
   const { createUserWithEmail, updateUserProfile } = useAuth();
   const [profilePic, setProfilePic] = useState("");
   const axiosInstance = useAxios();
@@ -56,7 +58,7 @@ const Register = () => {
           background: "#1C1C1C",
           color: "#EAEAEA",
         });
-        navigate("/");
+        navigate(from);
       })
       .catch((error) => {
         Swal.fire({

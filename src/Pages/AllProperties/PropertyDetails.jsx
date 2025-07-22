@@ -3,9 +3,9 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import profilePlaceholder from "./../../assets/profilePlaceholder.jpg";
-import AddToWishlistButton from "./AddToWishlistButton";
 import PropertyReviews from "./PropertyReviews";
 import AddReviewModal from "./AddReviewModal";
+import AddToWishlistButton from "./AddtoWishlistButton";
 
 const PropertyDetails = () => {
   const { id } = useParams();
