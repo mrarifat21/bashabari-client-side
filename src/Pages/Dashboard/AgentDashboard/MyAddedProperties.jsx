@@ -77,98 +77,100 @@ const MyAddedProperties = () => {
 
   if (isLoading)
     return (
-      <div className="text-center my-10 text-base-content bg-base-100 font-semibold text-lg">
+      <div className="text-center my-10 text-text bg-base-100 font-semibold text-lg">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
 
   return (
-    <div className="p-4 max-w-7xl mx-auto bg-base-100 min-h-screen text-base-content">
-      <h2 className="text-3xl font-bold mb-8 text-center text-primary">
-        My Added Properties
-      </h2>
+    <section className="bg-background">
+      <div className="p-4 max-w-7xl mx-auto min-h-screen text-text">
+        <h2 className="text-3xl font-bold mb-8 text-center text-primary">
+          My Added Properties
+        </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {properties.map((property) => (
-          <div
-            key={property._id}
-            className="card bg-base-200 shadow-md hover:shadow-xl transition duration-300 rounded-lg border border-base-300 flex flex-col text-base-content"
-          >
-            <figure className="overflow-hidden rounded-t-lg">
-              <img
-                src={property.image}
-                alt={property.title}
-                className="h-56 w-full object-cover transform hover:scale-105 transition duration-300"
-              />
-            </figure>
-
-            <div className="card-body flex flex-col flex-grow p-4">
-              <h2
-                className="card-title text-lg font-semibold truncate text-primary"
-                title={property.title}
-              >
-                {property.title}
-              </h2>
-
-              <p className="text-sm mt-1 text-base-content/80">
-                <strong>Location:</strong> {property.location}
-              </p>
-
-              <div className="flex items-center gap-2 mt-2">
-                <strong className="text-base-content/80">Agent:</strong>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {properties.map((property) => (
+            <div
+              key={property._id}
+              className="card bg-surfaceColor shadow-md hover:shadow-xl transition duration-300 rounded-lg border border-border flex flex-col text-text"
+            >
+              <figure className="overflow-hidden rounded-t-lg">
                 <img
-                  src={property.agentImage || profilePlaceholder}
-                  alt="Agent"
-                  className="w-9 h-9 rounded-full object-cover border border-primary"
+                  src={property.image}
+                  alt={property.title}
+                  className="h-56 w-full object-cover transform hover:scale-105 transition duration-300"
                 />
-                <span className="text-sm truncate" title={property.agentName}>
-                  {property.agentName}
-                </span>
-              </div>
+              </figure>
 
-              <p className="text-sm mt-3">
-                <strong>Status:</strong>
-                <span
-                  className={`ml-2 text-success ${
-                    property.status === "verified"
-                      ? "badge-success"
-                      : property.status === "rejected"
-                      ? "text-error"
-                      : "text-warning"
-                  }`}
+              <div className="card-body flex flex-col flex-grow p-4">
+                <h2
+                  className="card-title text-lg font-semibold truncate text-primary"
+                  title={property.title}
                 >
-                  {property.status}
-                </span>
-              </p>
+                  {property.title}
+                </h2>
 
-              <p className="text-sm mt-2 text-base-content/80">
-                <strong>Price Range:</strong> ${property.priceMin} - $
-                {property.priceMax}
-              </p>
+                <p className="text-sm mt-1 text-text/80">
+                  <strong>Location:</strong> {property.location}
+                </p>
 
-              <div className="mt-auto flex flex-wrap gap-3 justify-center sm:justify-start">
-                {property.status !== "rejected" && (
-                  <Link
-                    to={`/dashboard/updateProperty/${property._id}`}
-                    className="w-full sm:w-auto"
+                <div className="flex items-center gap-2 mt-2">
+                  <strong className="text-text/80">Agent:</strong>
+                  <img
+                    src={property.agentImage || profilePlaceholder}
+                    alt="Agent"
+                    className="w-9 h-9 rounded-full object-cover border border-primary"
+                  />
+                  <span className="text-sm truncate" title={property.agentName}>
+                    {property.agentName}
+                  </span>
+                </div>
+
+                <p className="text-sm mt-3">
+                  <strong>Status:</strong>
+                  <span
+                    className={`ml-2 font-extrabold ${
+                      property.status === "verified"
+                        ? "text-highlight"
+                        : property.status === "rejected"
+                        ? "text-red-600"
+                        : "text-warning"
+                    }`}
                   >
-                    <button className="btn btn-sm btn-info w-full sm:w-auto px-6 py-2 rounded-md font-semibold text-base-100">
-                      Update
-                    </button>
-                  </Link>
-                )}
-                <button
-                  className="btn btn-sm btn-error w-full sm:w-auto px-6 py-2 rounded-md font-semibold text-white border-0"
-                  onClick={() => handleDelete(property._id)}
-                >
-                  Delete
-                </button>
+                    {property.status}
+                  </span>
+                </p>
+
+                <p className="text-sm mt-2 text-text/80">
+                  <strong>Price Range:</strong> ${property.priceMin} - $
+                  {property.priceMax}
+                </p>
+
+                <div className="mt-auto flex flex-wrap gap-3 justify-center sm:justify-start">
+                  {property.status !== "rejected" && (
+                    <Link
+                      to={`/dashboard/updateProperty/${property._id}`}
+                      className="w-full sm:w-auto"
+                    >
+                      <button className="btn btn-sm bg-accent border-0 text-text w-full sm:w-auto px-6 py-2 rounded-md font-semibold">
+                        Update
+                      </button>
+                    </Link>
+                  )}
+                  <button
+                    className="btn btn-sm btn-warning w-full sm:w-auto px-6 py-2 rounded-md font-semibold text-text border-0"
+                    onClick={() => handleDelete(property._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

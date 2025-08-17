@@ -223,7 +223,7 @@ const UpdateProperty = () => {
           />
         </div>
 
-        <button type="submit" disabled={uploading} className="btn btn-primary w-full mt-4 text-base-100">
+        <button type="submit" disabled={uploading} className="btn btn-primary w-full mt-4 text-text border-0">
           Update Property
         </button>
       </form>

@@ -57,9 +57,9 @@
   --color-primary: #9a7209;
   --color-primary-hover: #7a5c07;
   --color-accent: #219a52;
-  --color-base-100: #99969648;      /* slightly darker than pure white */
-  --color-base-200: #ececec;      /* subtle surface color for cards/sections */
-  --color-base-300: #d1d1d1;      /* soft border color */
+  --color-base-100: #99969648;     
+  --color-base-200: #ececec;     
+  --color-base-300: #d1d1d1;    
   --color-base-content: #2c3e50;
   --color-warning: #e67e22;
 }
