@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import ThemeChanger from "./ThemeChanger";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -99,6 +100,7 @@ const NavBar = () => {
               </Link>
             </>
           )}
+          <ThemeChanger></ThemeChanger>
         </div>
       </div>
     </div>
