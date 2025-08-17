@@ -2,7 +2,18 @@
 @plugin "daisyui" {
   themes: realestate --default;
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
+@layer base {
+  html {
+    @apply transition-colors duration-300;
+  }
+
+  body {
+    /* @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100; */
+    font-family: "Inter", sans-serif;
+  }
+}
 .active {
   background-color: var(--color-base-300);
   color: var(--color-primary);
@@ -10,7 +21,7 @@
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
-@plugin "daisyui/theme" {
+/* @plugin "daisyui/theme" {
   name: "realestate";
   default: true;
   --color-primary: #b8860b; 
@@ -29,4 +40,36 @@
   --color-success: #2ecc71; 
   --color-warning: #f39c12;  
   --color-error: #e74c3c;   
+} */
+
+@theme {
+  --color-background: var(--color-base-100);
+  --color-surfaceColor: var(--color-base-200);
+  --color-text: var(--color-base-content);
+  --color-border: var(--color-base-300);
+  --color-button: var(--color-primary);
+  --color-button-hover: var(--color-primary-hover);
+  --color-highlight: var(--color-accent);
+  --color-warning: var(--color-warning);
+}
+
+:root {
+  --color-primary: #9a7209;
+  --color-primary-hover: #7a5c07;
+  --color-accent: #219a52;
+  --color-base-100: #99969648;      /* slightly darker than pure white */
+  --color-base-200: #ececec;      /* subtle surface color for cards/sections */
+  --color-base-300: #d1d1d1;      /* soft border color */
+  --color-base-content: #2c3e50;
+  --color-warning: #e67e22;
+}
+.dark {
+  --color-primary: #b8860b;
+  --color-primary-hover: #d4a00d;
+  --color-accent: #27ae60;
+  --color-base-100: #1c1c1c;
+  --color-base-200: #262626;
+  --color-base-300: #333333;
+  --color-base-content: #eaeaea;
+  --color-warning: #f39c12;
 }

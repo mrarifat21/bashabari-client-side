@@ -18,12 +18,12 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-base-200 text-base-content py-12 px-4">
+    <section className="bg-background text-text py-12 px-4 transition-colors duration-300">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-3 text-primary">
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-button">
           Subscribe to Our Newsletter
         </h2>
-        <p className="mb-6 text-base-content">
+        <p className="mb-6 text-text/80">
           Get the latest property updates, offers, and Bashabari news straight to your inbox.
         </p>
         <form
@@ -34,9 +34,12 @@ const Newsletter = () => {
             type="email"
             placeholder="Enter your email"
             {...register("email", { required: true })}
-            className="input input-bordered w-full max-w-xs bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full max-w-xs bg-surfaceColor text-text border border-border focus:border-button focus:ring-2 focus:ring-button/40 rounded-lg transition"
           />
-          <button type="submit" className="btn btn-primary text-base-100">
+          <button 
+            type="submit" 
+            className="w-full sm:w-auto py-2 px-6 rounded-lg bg-button hover:bg-button-hover text-text font-semibold transition-colors duration-200"
+          >
             Subscribe
           </button>
         </form>

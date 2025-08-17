@@ -8,8 +8,8 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
-  const location =useLocation();
-  const from = location.state?. from || '/'
+  const location = useLocation();
+  const from = location.state?.from || "/";
 
   const {
     register,
@@ -19,17 +19,14 @@ const Login = () => {
 
   const onSubmit = ({ email, password }) => {
     signIn(email, password)
-      .then((result) => {
-        // console.log("Logged in user:", result.user);
-
+      .then(() => {
         Swal.fire({
           icon: "success",
           title: "Login Successful!",
           text: "Welcome back to Bashabari",
-          background: "#1C1C1C",
-          color: "#EAEAEA",
+          background: "var(--color-background)",
+          color: "var(--color-text)",
         });
-
         navigate(from);
       })
       .catch((err) => {
@@ -37,60 +34,83 @@ const Login = () => {
           icon: "error",
           title: "Login Failed",
           text: err.message,
-          background: "#1C1C1C",
-          color: "#EAEAEA",
+          background: "var(--color-background)",
+          color: "var(--color-text)",
         });
       });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
-      <div className="card w-full max-w-sm bg-base-100 shadow-xl border border-base-300 rounded-lg">
-        <div className="card-body">
-          <h2 className="text-4xl font-extrabold text-center text-primary mb-6">
-            Login
-          </h2>
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 transition-colors duration-300">
+      <div className="w-full max-w-md bg-surfaceColor shadow-lg border border-border rounded-2xl p-8">
+        {/* Title */}
+        <h2 className="text-3xl font-extrabold text-center text-button mb-3">
+          Login
+        </h2>
+        <p className="text-center text-text/70 mb-6">
+          Welcome back to{" "}
+          <span className="font-semibold text-highlight">Bashabari</span>
+        </p>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Email Input */}
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
+          <div>
             <input
               type="email"
               {...register("email", { required: true })}
-              placeholder="Email"
-              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 rounded-lg border border-border bg-background text-text focus:outline-none focus:ring-2 focus:ring-button/40 transition"
             />
             {errors.email && (
-              <p className="text-error text-sm mt-1">Email is required</p>
+              <p className="text-warning text-xs mt-1">Email is required</p>
             )}
+          </div>
 
-            {/* Password Input */}
+          {/* Password */}
+          <div>
             <input
               type="password"
               {...register("password", { required: true })}
-              placeholder="Password"
-              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+              placeholder="Enter your password"
+              className="w-full px-4 py-2 rounded-lg border border-border bg-background text-text focus:outline-none focus:ring-2 focus:ring-button/40 transition"
             />
             {errors.password && (
-              <p className="text-error text-sm mt-1">Password is required</p>
+              <p className="text-warning text-xs mt-1">
+                Password is required
+              </p>
             )}
+          </div>
 
-            {/* Login Button */}
-            <button
-              type="submit"
-              className="btn btn-primary w-full mt-4 text-base-100 font-semibold"
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-2 mt-2 rounded-lg font-semibold text-base-100 bg-button hover:bg-button-hover transition-colors"
+          >
+            Login
+          </button>
+
+          {/* Register Redirect */}
+          <p className="text-sm text-center text-text mt-4">
+            Don’t have an account?{" "}
+            <Link
+              to="/register"
+              className="text-button font-medium hover:underline"
             >
-              Login
-            </button>
-            <p className="text-sm text-center text-base-content mt-4">
-              Don’t have an account?{" "}
-              <Link to="/register" className="link link-primary font-medium">
-                Register here
-              </Link>
-            </p>
-            <div className="divider text-base-content">OR</div>
-            <SocialLogin />
-          </form>
-        </div>
+              Register here
+            </Link>
+          </p>
+
+          {/* Divider */}
+          <div className="flex items-center gap-2 my-4">
+            <div className="flex-grow h-px bg-border"></div>
+            <span className="text-sm text-text/70">OR</span>
+            <div className="flex-grow h-px bg-border"></div>
+          </div>
+
+          {/* Social Login */}
+          <SocialLogin />
+        </form>
       </div>
     </div>
   );
