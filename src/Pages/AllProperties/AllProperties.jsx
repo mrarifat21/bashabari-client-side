@@ -39,7 +39,6 @@ const AllProperties = () => {
   }
 
   return (
-  
     <section className="bg-background">
       <div className=" min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-base-content">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">
@@ -71,7 +70,7 @@ const AllProperties = () => {
           No properties found.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {sortedProperties.map((property) => (
             <div
               key={property._id}

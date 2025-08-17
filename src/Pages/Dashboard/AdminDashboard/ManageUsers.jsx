@@ -97,7 +97,7 @@ const ManageUsers = () => {
     );
 
   return (
-    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-base-300">
+    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-border">
       <h2 className="text-3xl font-bold mb-6 text-primary text-center">
         Manage Users
       </h2>
@@ -130,18 +130,18 @@ const ManageUsers = () => {
               </td>
               <td className="text-center ">
                 {user.status === "fraud" ? (
-                  <span className="badge rounded-xs p-2 badge-error">
+                  <span className="badge rounded-xs p-2 bg-warning text-text">
                     Fraud
                   </span>
                 ) : (
                   <span className="capitalize">{user.role}</span>
                 )}
               </td>
-              <td className="text-center ">
+              <td className="text-center">
                 {user.status !== "fraud" && user.role !== "admin" && (
                   <button
                     onClick={() => handleRoleChange(user._id, "admin")}
-                    className="btn btn-xs btn-info px-3 py-1 rounded-md font-semibold hover:bg-info-focus transition border-1 text-black"
+                    className="btn btn-xs bg-accent px-3 py-1 rounded-md font-semibold hover:bg-info-focus transition border-0 text-text"
                     style={{ minWidth: "90px" }}
                   >
                     Make Admin
@@ -152,7 +152,7 @@ const ManageUsers = () => {
                 {user.status !== "fraud" && user.role !== "agent" && (
                   <button
                     onClick={() => handleRoleChange(user._id, "agent")}
-                    className="btn btn-xs btn-success px-3 py-1 rounded-md font-semibold hover:bg-success-focus transition border-1 text-black"
+                    className="btn btn-xs bg-accent px-3 py-1 rounded-md font-semibold hover:bg-success-focus transition border-0 text-black"
                     style={{ minWidth: "90px" }}
                   >
                     Make Agent
@@ -173,7 +173,7 @@ const ManageUsers = () => {
               <td className="text-center">
                 <button
                   onClick={() => handleDelete(user._id)}
-                  className="btn btn-xs btn-error px-3 py-1 rounded-md font-semibold hover:bg-error-focus transition border-1"
+                  className="btn btn-xs bg-red-500 px-3 py-1 rounded-md font-semibold hover:bg-red-700 transition border-0"
                   style={{ minWidth: "70px" }}
                 >
                   Delete

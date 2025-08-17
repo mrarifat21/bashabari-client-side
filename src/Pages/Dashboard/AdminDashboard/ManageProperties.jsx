@@ -60,7 +60,7 @@ const ManageProperties = () => {
 
   if (isLoading)
     return (
-      <p className="text-center py-10 text-primary font-semibold text-lg">
+      <p className="text-center py-10 text-text font-semibold text-lg">
         Loading properties...
       </p>
     );
@@ -72,7 +72,7 @@ const ManageProperties = () => {
     );
 
   return (
-    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-base-300">
+    <div className="p-6 max-w-6xl mx-auto overflow-x-auto rounded-lg shadow-lg border border-border">
       <h2 className="text-3xl font-bold mb-6 text-primary text-center">
         Manage Pending Properties
       </h2>
@@ -132,7 +132,7 @@ const ManageProperties = () => {
                         onClick={() =>
                           handleStatusChange(property._id, "verified")
                         }
-                        className="btn btn-sm btn-success border-0"
+                        className="btn btn-sm bg-highlight border-0"
                       >
                         Approve
                       </button>
@@ -140,7 +140,7 @@ const ManageProperties = () => {
                         onClick={() =>
                           handleStatusChange(property._id, "rejected")
                         }
-                        className="btn btn-sm btn-error border-0"
+                        className="btn btn-sm bg-red-500  border-0"
                       >
                         Reject
                       </button>
@@ -149,9 +149,9 @@ const ManageProperties = () => {
                     <span
                       className={`badge rounded-xs text-white p-2 ${
                         property.status === "verified"
-                          ? "badge-success"
+                          ? "bg-accent"
                           : property.status === "rejected"
-                          ? "badge-error"
+                          ? "bg-red-500"
                           : "badge-neutral"
                       }`}
                     >

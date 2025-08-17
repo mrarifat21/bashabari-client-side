@@ -15,6 +15,7 @@ import {
   FaCommentDots,
 } from "react-icons/fa";
 import useUserRole from "../hooks/useUserRole";
+import ThemeChanger from "../Pages/Shared/NavBar/ThemeChanger";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useUserRole();
@@ -63,6 +64,7 @@ const DashboardLayout = () => {
           <Link to="/" className="text-2xl text-primary font-extrabold mb-4">
             BashaBari
           </Link>
+          <ThemeChanger></ThemeChanger>
 
           {/* Common */}
           <li>

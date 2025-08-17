@@ -13,7 +13,7 @@ const ErrorPage = () => {
           An unexpected error has occurred. Please try again later.
         </p>
 
-        <Link to="/" className="btn btn-primary btn-md text-base-100 font-semibold hover:scale-105 transition-transform duration-300">
+        <Link to="/" className="btn btn-primary btn-md text-text font-semibold hover:scale-105 transition-transform duration-300">
           &larr; Back to Home
         </Link>
       </div>

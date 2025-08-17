@@ -89,11 +89,11 @@ const AdvertiseProperty = () => {
                   </td>
                   <td className="text-center">
                     {property.isAdvertised ? (
-                      <span className="badge badge-success p-2">Advertised</span>
+                      <span className="badge  p-2">Advertised</span>
                     ) : (
                       <button
                         onClick={() => handleAdvertise(property._id)}
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm btn-primary border-0"
                       >
                         Advertise
                       </button>
