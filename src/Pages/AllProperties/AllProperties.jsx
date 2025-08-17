@@ -32,14 +32,16 @@ const AllProperties = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center mt-10 text-xl text-base-content bg-base-100 py-20">
+      <div className="text-center mt-10 text-xl text-base-content bg-background py-20">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
   }
 
   return (
-    <div className="bg-base-100 min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-base-content">
+  
+    <section className="bg-background">
+      <div className=" min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-base-content">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">
         All Verified Properties
       </h2>
@@ -114,7 +116,7 @@ const AllProperties = () => {
                 </p>
 
                 <Link to={`/property/${property._id}`} className="mt-4 block">
-                  <button className="btn btn-sm btn-primary w-full text-base-100">
+                  <button className="btn btn-sm btn-primary w-full text-text border-0">
                     View Details
                   </button>
                 </Link>
@@ -124,6 +126,7 @@ const AllProperties = () => {
         </div>
       )}
     </div>
+    </section>
   );
 };
 
