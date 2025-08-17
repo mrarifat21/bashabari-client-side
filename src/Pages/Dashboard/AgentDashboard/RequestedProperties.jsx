@@ -29,8 +29,8 @@ const RequestedProperties = () => {
       Swal.fire({
         title: "Status Updated!",
         icon: "success",
-        background: "#1C1C1C", // Base-100
-        color: "#EAEAEA", // Base-content
+        background: "#1C1C1C",
+        color: "#EAEAEA", 
       });
     },
     onError: () => {
@@ -38,14 +38,14 @@ const RequestedProperties = () => {
         title: "Error",
         text: "Failed to update status.",
         icon: "error",
-        background: "#1C1C1C", // Base-100
-        color: "#EAEAEA", // Base-content
+        background: "#1C1C1C",
+        color: "#EAEAEA", 
       });
     },
   });
 
   return (
-    <div className="w-full max-w-7xl mx-auto my-10 px-4 sm:px-6 lg:px-8 bg-base-100 rounded-xl shadow-lg text-base-content">
+    <div className="w-full max-w-7xl mx-auto my-10 px-4 sm:px-6 lg:px-8 bg-base-100 rounded-xl shadow-lg text-text">
       <h2 className="text-2xl font-bold mb-6 text-center sm:text-left text-primary pt-6">
         Requested Properties
       </h2>
@@ -56,7 +56,7 @@ const RequestedProperties = () => {
       ) : (
         <div className="overflow-x-auto rounded-lg shadow-lg border border-base-300">
           <table className="table w-full table-zebra min-w-[700px]">
-            <thead className="bg-primary text-primary-content">
+            <thead className="bg-primary">
               <tr>
                 <th className="text-center">#</th>
                 <th className="text-left">Property</th>
@@ -71,7 +71,7 @@ const RequestedProperties = () => {
             <tbody>
               {offers.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="text-center py-6 text-base-content/70">
+                  <td colSpan="8" className="text-center py-6 text-text/70">
                     No offers found.
                   </td>
                 </tr>
@@ -107,8 +107,8 @@ const RequestedProperties = () => {
                       <span
                         className={` capitalize px-3 py-1 
                           ${offer.status === "pending" ? " text-warning font-bold" : ""}
-                          ${offer.status === "accepted" ? " text-success font-bold" : ""}
-                          ${offer.status === "rejected" ? "text-error font-bold" : ""}
+                          ${offer.status === "accepted" ? " text-highlight font-bold" : ""}
+                          ${offer.status === "rejected" ? "text-red-500 font-bold" : ""}
                         `}
                         title={offer.status}
                       >
@@ -126,7 +126,7 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs btn-success text-success-content px-3 border-0"
+                            className="btn btn-xs bg-highlight text-text px-3 border-0"
                           >
                             Accept
                           </button>
@@ -138,13 +138,13 @@ const RequestedProperties = () => {
                                 propertyId: offer.propertyId,
                               })
                             }
-                            className="btn btn-xs btn-error text-error-content px-3 border-0 "
+                            className="btn btn-xs text-warning px-3 border-0 "
                           >
                             Reject
                           </button>
                         </div>
                       ) : (
-                        <span className="text-base-content/60">-</span>
+                        <span className="text-text/60">-</span>
                       )}
                     </td>
                   </tr>

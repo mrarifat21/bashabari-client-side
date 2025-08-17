@@ -6,10 +6,10 @@ import Footer from "../Pages/Shared/Footer/Footer";
 const RootLayouts = () => {
   return (
     <div className="">
-      <nav>
+      <nav className="fixed top-0 left-0 w-full z-50">
         <NavBar></NavBar>
       </nav>
-      <main>
+      <main className="pt-16">
         <Outlet></Outlet>
       </main>
       <footer>

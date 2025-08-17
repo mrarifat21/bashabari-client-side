@@ -48,7 +48,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-surfaceColor shadow-sm ">
       <div className="w-11/12 mx-auto navbar">
         <div className="navbar-start">
           <div className="dropdown">
