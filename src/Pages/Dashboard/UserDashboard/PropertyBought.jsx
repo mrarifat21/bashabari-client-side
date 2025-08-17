@@ -71,9 +71,9 @@ console.log(offers);
               className="w-full h-48 object-cover rounded-md mb-4"
             />
             <h3 className="text-xl font-semibold">{offer.propertyTitle}</h3>
-            <p className="text-gray-300 mb-1">Location: {offer.propertyLocation}</p>
-            <p className="text-gray-300 mb-1">Agent: {offer.agentName}</p>
-            <p className="text-gray-400 font-semibold mb-2">Offered Amount: ${offer.offerAmount}</p>
+            <p className="text-text mb-1">Location: {offer.propertyLocation}</p>
+            <p className="text-text mb-1">Agent: {offer.agentName}</p>
+            <p className="text-text font-semibold mb-2">Offered Amount: ${offer.offerAmount}</p>
 
             <p className="mb-3">
               Status:{" "}

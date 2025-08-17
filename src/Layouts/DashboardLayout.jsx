@@ -64,7 +64,7 @@ const DashboardLayout = () => {
           <Link to="/" className="text-2xl text-primary font-extrabold mb-4">
             BashaBari
           </Link>
-          <ThemeChanger></ThemeChanger>
+          {/* <ThemeChanger></ThemeChanger> */}
 
           {/* Common */}
           <li>
@@ -113,11 +113,11 @@ const DashboardLayout = () => {
                   <FaClock /> Requested Properties
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/dashboard/soldProperties">
                   <FaDollarSign /> My Sold Properties
                 </NavLink>
-              </li>
+              </li> */}
             </>
           )}
 

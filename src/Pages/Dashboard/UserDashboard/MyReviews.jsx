@@ -73,13 +73,14 @@ const MyReviews = () => {
 
   if (isLoading)
     return (
-      <div className="text-center py-10 bg-base-100 text-base-content">
+      <div className="text-center py-10 bg-background text-base-content">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
 
   return (
-    <div className="max-w-6xl mx-auto p-4 bg-base-100 min-h-screen text-base-content">
+    <section className="bg-background">
+  <div className="max-w-6xl mx-auto p-4  min-h-screen text-base-content">
       <h2 className="text-3xl font-bold mb-6 text-center text-primary">
         My Reviews
       </h2>
@@ -106,7 +107,7 @@ const MyReviews = () => {
               <p className="text-base-content">{review.comment}</p>
               <button
                 onClick={() => handleDelete(review._id)}
-                className="btn btn-error btn-sm mt-2 text-white border-0"
+                className="btn bg-warning btn-sm mt-2 text-text border-0"
               >
                 Delete Review
               </button>
@@ -115,6 +116,8 @@ const MyReviews = () => {
         </div>
       )}
     </div>
+    </section>
+  
   );
 };
 

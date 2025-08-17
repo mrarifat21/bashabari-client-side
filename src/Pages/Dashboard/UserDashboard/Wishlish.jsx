@@ -64,16 +64,16 @@ const Wishlist = () => {
 
   if (isLoading)
     return (
-      <div className="text-center py-20 bg-base-100 text-base-content text-lg font-semibold">
+      <div className="text-center py-20 bg-base-100 text-text text-lg font-semibold">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-base-100 min-h-screen text-base-content">
+    <div className="max-w-6xl mx-auto p-6 bg-base-100 min-h-screen text-text">
       <h2 className="text-3xl font-bold mb-6 text-primary">My Wishlist</h2>
       {wishlist.length === 0 ? (
-        <p className="text-center text-base-content/70">
+        <p className="text-center text-text/70">
           No properties in your wishlist.
         </p>
       ) : (
@@ -81,7 +81,7 @@ const Wishlist = () => {
           {wishlist.map((item) => (
             <div
               key={item._id}
-              className="bg-base-200 p-4 shadow-md rounded-xl flex flex-col border border-base-300 text-base-content"
+              className="bg-base-200 p-4 shadow-md rounded-xl flex flex-col border border-base-300 text-text"
             >
               <img
                 src={item.propertyImage}
@@ -91,10 +91,10 @@ const Wishlist = () => {
               <h3 className="text-lg font-semibold mt-2 text-primary">
                 {item.propertyTitle}
               </h3>
-              <p className="text-sm text-base-content/80">
+              <p className="text-sm text-text/80">
                 {item.propertyLocation}
               </p>
-              <p className="text-sm text-base-content">
+              <p className="text-sm text-text">
                 💰 ${item.priceMin} - ${item.priceMax}
               </p>
               <div className="flex items-center gap-2 mt-1">
@@ -103,24 +103,24 @@ const Wishlist = () => {
                   className="w-7 h-7 rounded-full border border-primary"
                   alt="agent"
                 />
-                <span className="text-sm text-base-content">
+                <span className="text-sm text-text">
                   {item.agentName}
                 </span>
                 {item.propertyStatus === "verified" && (
-                  <span className="text-success text-sm font-bold">
+                  <span className="text-accent text-sm font-bold">
                     Verified
                   </span>
                 )}
               </div>
               <div className="flex gap-2 mt-4">
                 <Link to={`/dashboard/make-offer/${item._id}`}>
-                  <button className="btn btn-primary btn-sm text-base-100 border-0">
+                  <button className="btn btn-primary btn-sm text-text border-0">
                     Make Offer
                   </button>
                 </Link>
                 <button
                   onClick={() => handleRemove(item._id)}
-                  className="btn btn-error btn-sm text-white border-0"
+                  className="btn bg-warning btn-sm text-text border-0"
                 >
                   Remove
                 </button>
