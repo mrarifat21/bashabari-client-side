@@ -9,7 +9,7 @@ const Profile = () => {
 
   if (isLoading || !user) {
     return (
-      <div className="text-center py-20 text-base-content bg-base-100 text-lg font-semibold">
+      <div className="text-center py-20 text-text bg-base-100 text-lg font-semibold">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
@@ -26,9 +26,9 @@ const Profile = () => {
           />
         </div>
 
-        <div className="flex-1 text-base-content">
+        <div className="flex-1 text-text">
           <h2 className="text-3xl font-extrabold mb-1 text-primary">{user?.displayName}</h2>
-          <p className="text-base-content mb-3 break-words">{user?.email}</p>
+          <p className="text-text mb-3 break-words">{user?.email}</p>
 
           {role === "admin" && (
             <p className="inline-flex items-center gap-2 text-accent font-semibold text-lg">
@@ -44,7 +44,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="mt-8 bg-base-200 p-6 rounded-2xl shadow-md text-base-content max-w-md mx-auto sm:mx-0">
+      <div className="mt-8 bg-base-200 p-6 rounded-2xl shadow-md text-text max-w-md mx-auto sm:mx-0">
         <h3 className="text-xl font-bold mb-4 text-primary">Account Details</h3>
         <ul className="text-sm space-y-3">
           <li>

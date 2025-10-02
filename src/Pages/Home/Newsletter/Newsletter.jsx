@@ -19,7 +19,7 @@ const Newsletter = () => {
 
   return (
     <section className="bg-background text-text py-12 px-4 transition-colors duration-300">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="w-11/12 mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-3 text-button">
           Subscribe to Our Newsletter
         </h2>

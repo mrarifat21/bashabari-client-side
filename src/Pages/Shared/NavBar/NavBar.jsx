@@ -18,7 +18,7 @@ const NavBar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+            `text-text hover:text-primary ${isActive ? "active" : ""}`
           }
         >
           Home
@@ -28,7 +28,7 @@ const NavBar = () => {
         <NavLink
           to="/allProperties"
           className={({ isActive }) =>
-            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+            `text-text hover:text-primary ${isActive ? "active" : ""}`
           }
         >
           All properties
@@ -38,7 +38,7 @@ const NavBar = () => {
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
-            `text-base-content hover:text-primary ${isActive ? "active" : ""}`
+            `text-text hover:text-primary ${isActive ? "active" : ""}`
           }
         >
           Dashboard

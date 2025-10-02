@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-surfaceColor text-text transition-colors duration-300 py-10 border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="w-11/12 mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand and copyright */}
         <div className="text-center md:text-left space-y-2">
           <p className="text-4xl md:text-5xl font-bold text-button">

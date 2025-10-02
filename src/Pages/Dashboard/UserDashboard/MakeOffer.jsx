@@ -55,90 +55,90 @@ const MakeOffer = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 mt-8 bg-base-200 rounded-xl shadow-md border border-base-300 text-base-content">
+    <div className="w-full max-w-2xl mx-auto p-6 mt-8 bg-base-200 rounded-xl shadow-md border border-base-300 text-text">
       <h2 className="text-3xl font-bold text-center mb-6 text-primary">Make an Offer</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
-          <label htmlFor="propertyTitle" className="label text-base-content">
+          <label htmlFor="propertyTitle" className="label text-text">
             Property Title
           </label>
           <input
             id="propertyTitle"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.propertyTitle}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="propertyLocation" className="label text-base-content">
+          <label htmlFor="propertyLocation" className="label text-text">
             Location
           </label>
           <input
             id="propertyLocation"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.propertyLocation}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="agentName" className="label text-base-content">
+          <label htmlFor="agentName" className="label text-text">
             Agent Name
           </label>
           <input
             id="agentName"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={property.agentName}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="buyerName" className="label text-base-content">
+          <label htmlFor="buyerName" className="label text-text">
             Your Name
           </label>
           <input
             id="buyerName"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={user.displayName}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="buyerEmail" className="label text-base-content">
+          <label htmlFor="buyerEmail" className="label text-text">
             Your Email
           </label>
           <input
             id="buyerEmail"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             value={user.email}
             readOnly
           />
         </div>
 
         <div>
-          <label htmlFor="offerAmount" className="label text-base-content">
+          <label htmlFor="offerAmount" className="label text-text">
             Offer Amount
           </label>
           <input
             id="offerAmount"
             type="number"
             placeholder={`Enter offer ($${property.priceMin} - $${property.priceMax})`}
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             {...register("offerAmount", { required: true })}
           />
         </div>
 
         <div>
-          <label htmlFor="buyingDate" className="label text-base-content">
+          <label htmlFor="buyingDate" className="label text-text">
             Preferred Buying Date
           </label>
           <input
             id="buyingDate"
             type="date"
-            className="input input-bordered w-full bg-base-100 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+            className="input input-bordered w-full bg-base-100 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             {...register("buyingDate", { required: true })}
           />
         </div>

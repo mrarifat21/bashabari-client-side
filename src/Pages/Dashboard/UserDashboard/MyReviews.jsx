@@ -73,19 +73,19 @@ const MyReviews = () => {
 
   if (isLoading)
     return (
-      <div className="text-center py-10 bg-background text-base-content">
+      <div className="text-center py-10 bg-background text-text">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
 
   return (
     <section className="bg-background">
-  <div className="max-w-6xl mx-auto p-4  min-h-screen text-base-content">
+  <div className="max-w-6xl mx-auto p-4  min-h-screen text-text">
       <h2 className="text-3xl font-bold mb-6 text-center text-primary">
         My Reviews
       </h2>
       {reviews.length === 0 ? (
-        <p className="text-base-content/70 text-center">
+        <p className="text-text/70 text-center">
           You haven’t reviewed any properties yet.
         </p>
       ) : (
@@ -93,18 +93,18 @@ const MyReviews = () => {
           {reviews.map((review) => (
             <div
               key={review._id}
-              className="p-5 bg-base-200 rounded-xl border border-base-300 shadow space-y-2 text-base-content"
+              className="p-5 bg-base-200 rounded-xl border border-base-300 shadow space-y-2 text-text"
             >
               <h3 className="text-xl font-semibold text-primary">
                 {review.propertyTitle}
               </h3>
-              <p className="text-sm text-base-content/80">
+              <p className="text-sm text-text/80">
                 Agent: {review.agentName}
               </p>
-              <p className="text-sm text-base-content/60">
+              <p className="text-sm text-text/60">
                 {format(new Date(review.createdAt), "PPPpp")}
               </p>
-              <p className="text-base-content">{review.comment}</p>
+              <p className="text-text">{review.comment}</p>
               <button
                 onClick={() => handleDelete(review._id)}
                 className="btn bg-warning btn-sm mt-2 text-text border-0"

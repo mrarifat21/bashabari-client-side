@@ -70,7 +70,7 @@ const AddReviewModal = ({ propertyId, propertyTitle, agentName }) => {
       </button>
 
       <dialog id="add_review_modal" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box bg-base-200 text-base-content shadow-lg border border-secondary">
+        <div className="modal-box bg-base-200 text-text shadow-lg border border-secondary">
           <h3 className="text-2xl font-semibold text-primary mb-6">Write a Review</h3>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

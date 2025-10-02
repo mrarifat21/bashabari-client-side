@@ -9,7 +9,7 @@ const ErrorPage = () => {
         <h2 className="text-3xl md:text-4xl font-semibold mb-3 text-primary">
           Something went wrong.
         </h2>
-        <p className="text-base-content/80 mb-8">
+        <p className="text-text/80 mb-8">
           An unexpected error has occurred. Please try again later.
         </p>
 

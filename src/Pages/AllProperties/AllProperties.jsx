@@ -32,7 +32,7 @@ const AllProperties = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center mt-10 text-xl text-base-content bg-background py-20">
+      <div className="text-center mt-10 text-xl text-text bg-background py-20">
         <span className="loading loading-spinner text-primary"></span>
       </div>
     );
@@ -40,7 +40,7 @@ const AllProperties = () => {
 
   return (
     <section className="bg-background">
-      <div className=" min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-base-content">
+      <div className=" min-h-screen p-4 lg:p-10 max-w-7xl mx-auto text-text">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">
         All Verified Properties
       </h2>
@@ -51,11 +51,11 @@ const AllProperties = () => {
           placeholder="Search by location..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-full sm:max-w-xs bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+          className="input input-bordered w-full sm:max-w-xs bg-base-200 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
         />
 
         <select
-          className="select select-bordered w-full sm:w-fit bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+          className="select select-bordered w-full sm:w-fit bg-base-200 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
@@ -66,7 +66,7 @@ const AllProperties = () => {
       </div>
 
       {sortedProperties.length === 0 ? (
-        <p className="text-center text-base-content/70">
+        <p className="text-center text-text/70">
           No properties found.
         </p>
       ) : (
@@ -74,7 +74,7 @@ const AllProperties = () => {
           {sortedProperties.map((property) => (
             <div
               key={property._id}
-              className="card bg-base-200 text-base-content border border-base-300 shadow-md hover:shadow-xl transition duration-300"
+              className="card bg-base-200 text-text border border-base-300 shadow-md hover:shadow-xl transition duration-300"
             >
               <figure>
                 <img
@@ -89,19 +89,19 @@ const AllProperties = () => {
                   {property.title}
                 </h2>
 
-                <p className="text-sm text-base-content/80">
+                <p className="text-sm text-text">
                   <strong>Location:</strong> {property.location}
                 </p>
 
-                <div className="flex items-center gap-2 mt-2">
-                  <strong className="text-sm text-base-content/80">Agent:</strong>
+                {/* <div className="flex items-center gap-2 mt-2">
+                  <strong className="text-sm text-text">Agent:</strong>
                   <img
                     src={property.agentImage || profilePlaceholder}
                     alt="Agent"
                     className="w-8 h-8 rounded-full object-cover border border-primary"
                   />
                   <span className="text-sm">{property.agentName}</span>
-                </div>
+                </div> */}
 
                 <p className="text-sm mt-2">
                   <strong>Status:</strong>{" "}
@@ -110,12 +110,12 @@ const AllProperties = () => {
                   </span>
                 </p>
 
-                <p className="text-sm mt-1 text-base-content/80">
+                <p className="text-sm mt-1 text-text">
                   <strong>Price Range:</strong> ${property.priceMin} - ${property.priceMax}
                 </p>
 
-                <Link to={`/property/${property._id}`} className="mt-4 block">
-                  <button className="btn btn-sm btn-primary w-full text-text border-0">
+                <Link to={`/property/${property._id}`} className="mt-2 block">
+                  <button className="btn btn-sm btn-primary w-full text-text border-0 rounded-lg font-bold">
                     View Details
                   </button>
                 </Link>

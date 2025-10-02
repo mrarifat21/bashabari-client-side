@@ -4,7 +4,7 @@ const HowItWorks = () => {
   return (
     <section className="bg-background">
       <div className="py-16  text-text transition-colors duration-300">
-        <div className="max-w-6xl mx-auto text-center px-4">
+        <div className="w-11/12 mx-auto text-center  px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-button">
             How It Works
           </h2>
@@ -16,7 +16,7 @@ const HowItWorks = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Step 1 */}
             <div className="bg-surfaceColor rounded-2xl p-6 shadow-md hover:shadow-xl border border-border transition-transform transform hover:-translate-y-1 duration-300">
-              <div className="text-5xl text-button mb-4">
+              <div className="text-5xl text-button mb-4 flex justify-center">
                 <FaSearchLocation />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-text">
@@ -30,7 +30,7 @@ const HowItWorks = () => {
 
             {/* Step 2 */}
             <div className="bg-surfaceColor rounded-2xl p-6 shadow-md hover:shadow-xl border border-border transition-transform transform hover:-translate-y-1 duration-300">
-              <div className="text-5xl text-button mb-4">
+              <div className="text-5xl text-button mb-4 flex justify-center">
                 <FaRegHandshake />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-text">
@@ -44,7 +44,7 @@ const HowItWorks = () => {
 
             {/* Step 3 */}
             <div className="bg-surfaceColor rounded-2xl p-6 shadow-md hover:shadow-xl border border-border transition-transform transform hover:-translate-y-1 duration-300">
-              <div className="text-5xl text-button mb-4">
+              <div className="text-5xl text-button mb-4 flex justify-center">
                 <FaHome />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-text">

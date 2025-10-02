@@ -82,7 +82,7 @@ const ManageProperties = () => {
           No pending properties found.
         </p>
       ) : (
-        <table className="table w-full table-zebra">
+        <table className="table w-full table-zebra ">
           <thead className="bg-primary text-primary-content">
             <tr>
               <th className="text-center">#</th>

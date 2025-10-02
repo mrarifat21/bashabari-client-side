@@ -90,7 +90,7 @@ const ManageReviews = () => {
               ))}
             </div>
 
-            <p className="text-base-content mb-6 flex-grow break-words whitespace-pre-wrap">
+            <p className="text-text mb-6 flex-grow break-words whitespace-pre-wrap">
               {review.comment}
             </p>
 

@@ -107,7 +107,7 @@ const Register = () => {
               type="text"
               {...register("name", { required: true })}
               placeholder="Full Name"
-              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+              className="input input-bordered w-full bg-base-200 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.name && (
               <p className="text-error text-sm mt-1">Name is required</p>
@@ -116,7 +116,7 @@ const Register = () => {
             <input
               type="file"
               onChange={handleImageUpload}
-              className="file-input file-input-bordered w-full bg-base-200 text-base-content"
+              className="file-input file-input-bordered w-full bg-base-200 text-text"
               accept="image/*"
             />
 
@@ -124,7 +124,7 @@ const Register = () => {
               type="email"
               {...register("email", { required: true })}
               placeholder="Email"
-              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+              className="input input-bordered w-full bg-base-200 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.email && (
               <p className="text-error text-sm mt-1">Email is required</p>
@@ -145,7 +145,7 @@ const Register = () => {
                 },
               })}
               placeholder="Password"
-              className="input input-bordered w-full bg-base-200 text-base-content focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
+              className="input input-bordered w-full bg-base-200 text-text focus:border-primary focus:ring-2 focus:ring-primary/40 transition"
             />
             {errors.password && (
               <p className="text-error text-sm mt-1">
@@ -160,14 +160,14 @@ const Register = () => {
               Register
             </button>
 
-            <p className="text-sm text-center text-base-content mt-6">
+            <p className="text-sm text-center text-text mt-6">
               Already have an account?{" "}
               <Link to="/login" className="link link-primary font-medium">
                 Login here
               </Link>
             </p>
 
-            <div className="divider text-base-content">OR</div>
+            <div className="divider text-text">OR</div>
             <SocialLogin />
           </form>
         </div>

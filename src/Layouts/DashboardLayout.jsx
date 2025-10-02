@@ -59,7 +59,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-fit p-4 space-y-2">
+        <ul className="menu bg-base-200 text-text min-h-full w-fit p-4 space-y-2">
           {/* Sidebar content */}
           <Link to="/" className="text-2xl text-primary font-extrabold mb-4">
             BashaBari

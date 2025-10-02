@@ -34,7 +34,7 @@ const Advertise = () => {
 
   return (
     <section className="bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12  text-text transition-colors duration-300">
+      <div className="w-11/12 mx-auto sm:px-6  py-12  text-text transition-colors duration-300">
         <h2 className="text-3xl font-bold text-center text-button mb-10">
           Featured Properties
         </h2>
@@ -58,19 +58,19 @@ const Advertise = () => {
                   />
                 </figure>
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold text-text mb-1">
+                  <h3 className="font-semibold text-text mb-1">
                     {property.title}
                   </h3>
                   <p className="text-sm text-text/80 mb-1">
-                    <span className="font-medium">📍 Location:</span>{" "}
+                    <span className="font-medium">Location:</span>{" "}
                     {property.location}
                   </p>
                   <p className="text-sm text-text/80 mb-1">
-                    <span className="font-medium">📌 Status:</span>{" "}
+                    <span className="font-medium">Status:</span>{" "}
                     {property.status}
                   </p>
                   <p className="text-sm text-text/80 mb-3">
-                    <span className="font-medium">💰 Price:</span> $
+                    <span className="font-medium">Price:</span> $
                     {property.priceMin} - ${property.priceMax}
                   </p>
                   <Link

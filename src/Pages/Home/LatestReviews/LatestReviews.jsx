@@ -34,9 +34,9 @@ const LatestReviews = () => {
 
   return (
     <section className="border-y-1 px-4 py-10 bg-background">  
-      <div className=" md:py-16 max-w-7xl mx-auto  text-text transition-colors duration-300 ">
+      <div className=" md:py-16 w-11/12 mx-auto  text-text transition-colors duration-300 ">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-button">
-          🌟 Latest User Reviews
+          Latest User Reviews
         </h2>
 
         {reviews.length === 0 ? (
